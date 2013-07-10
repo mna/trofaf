@@ -1,4 +1,5 @@
 extends layout
 
 block content
-	h1 My Post!
+	h1 #{Post.ShortPost.Title}
+	div #{Post.Content}

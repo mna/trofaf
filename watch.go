@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/howeyc/fsnotify"
+	"github.com/russross/blackfriday"
 )
 
 const (
@@ -17,6 +18,7 @@ const (
 	// (i.e. Create followed by Modify, etc.). No need to rush to generate
 	// the HTML, just wait for it to calm down before processing.
 	watchEventDelay = 30 * time.Second
+	maxRecentPosts  = 2
 )
 
 // Receive watcher events for the posts directory. All events require re-generating
@@ -68,9 +70,87 @@ func regeneratePosts() {
 	sfi := sortableFileInfo(fis)
 	sfi = FilterDir(sfi)
 	sort.Sort(sfi)
-	for _, fi := range sfi {
-		regenerateFile(fi)
+
+	recent := make([]*ShortPost, maxRecentPosts)
+	all := make([]*LongPost, len(sfi))
+	// First pass to get the recent posts (and others) so that
+	// they can be passed to all posts.
+	for i, fi := range sfi {
+		all[i] = newLongPost(fi)
+		if i < maxRecentPosts {
+			recent[i] = all[i].Short()
+		}
 	}
+
+	for i, p := range all {
+		td := newTemplateData(p, i, recent, all)
+		regenerateFile(td)
+	}
+}
+
+type TemplateData struct {
+	Post   *LongPost
+	Recent []*ShortPost
+	Prev   *ShortPost
+	Next   *ShortPost
+}
+
+func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
+	td := &TemplateData{Post: p, Recent: r}
+
+	if i > 0 {
+		td.Prev = all[i-1].Short()
+	}
+	if i < len(all)-2 {
+		td.Next = all[i+1].Short()
+	}
+	return td
+}
+
+type ShortPost struct {
+	Slug        string
+	Author      string
+	Title       string
+	Description string
+	PubTime     time.Time
+	ModTime     time.Time
+}
+
+type LongPost struct {
+	*ShortPost
+	Content []byte
+}
+
+func newLongPost(fi os.FileInfo) *LongPost {
+	slug := strings.Replace(fi.Name(), filepath.Ext(fi.Name()), "", 1)
+	sp := &ShortPost{
+		slug,
+		"author",      // TODO : Complete...
+		slug,          // TODO : Read first heading, or front matter
+		"description", // TODO : Read front matter
+		fi.ModTime(),  // TODO : This is NOT the pub time...
+		fi.ModTime(),
+	}
+
+	f, err := os.Open(filepath.Join(PostsDir, fi.Name()))
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
+	defer f.Close()
+	b, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
+	res := blackfriday.MarkdownCommon(b)
+	lp := &LongPost{
+		sp,
+		res,
+	}
+	return lp
+}
+
+func (lp *LongPost) Short() *ShortPost {
+	return lp.ShortPost
 }
 
 // TODO : Should pass to the template:
@@ -82,20 +162,14 @@ func regeneratePosts() {
 // Next : The next (more recent) post
 // Previous : The previous (older) post
 
-func regenerateFile(fi os.FileInfo) {
-	f, err := os.Open(filepath.Join(PostsDir, fi.Name()))
-	if err != nil {
-		log.Fatal("FATAL ", err)
-	}
-	defer f.Close()
-	// TODO : Blackfriday...
-
-	nm := fi.Name()
-	nm = strings.Replace(nm, filepath.Ext(nm), "", 1)
-	fw, err := os.Create(filepath.Join(PublicDir, nm))
+func regenerateFile(td *TemplateData) {
+	fw, err := os.Create(filepath.Join(PublicDir, td.Post.Slug))
 	if err != nil {
 		log.Fatal("FATAL ", err)
 	}
 	defer fw.Close()
-	postTpl.ExecuteTemplate(fw, "post", nil)
+	err = postTpl.ExecuteTemplate(fw, postTplNm, td)
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
 }

@@ -4,8 +4,8 @@ html.no-js
 	head
 		meta[charset="utf-8"]
 		meta[http-equiv="X-UA-Compatible"][content="IE=edge"]
-		title ${Title}
-		meta[name="description"][content=Description]
+		title #{Post.ShortPost.Title}
+		meta[name="description"][content=Post.ShortPost.Description]
 		meta[name="viewport"][content="width=device-width, initial-scale=1"]
 		link[rel="stylesheet"][href="/public/css/normalize.css"]
 		link[rel="stylesheet"][href="/public/css/main.css"]

@@ -12,7 +12,8 @@ import (
 )
 
 var (
-	postTpl *template.Template
+	postTpl   *template.Template
+	postTplNm = "post.amber"
 )
 
 func main() {
@@ -40,13 +41,14 @@ func main() {
 }
 
 func compileTemplate() {
-	ap := filepath.Join(TemplatesDir, "post.amber")
+	ap := filepath.Join(TemplatesDir, postTplNm)
 	if _, err := os.Stat(ap); os.IsNotExist(err) {
 		// Amber post template does not exist, compile the native Go templates
 		postTpl, err = template.ParseGlob(filepath.Join(TemplatesDir, "*.html"))
 		if err != nil {
 			log.Fatal("FATAL ", err)
 		}
+		postTplNm = "post" // TODO : Validate this...
 	} else {
 		c := amber.New()
 		if err := c.ParseFile(ap); err != nil {
