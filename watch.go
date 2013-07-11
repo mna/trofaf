@@ -1,10 +1,12 @@
 package main
 
 import (
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -63,13 +65,27 @@ func FilterDir(s sortableFileInfo) sortableFileInfo {
 }
 
 func regeneratePosts() {
-	fis, err := ioutil.ReadDir(PostsDir)
+	// Clear the public directory, except subdirs
+	fis, err := ioutil.ReadDir(PublicDir)
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
+	for _, fi := range fis {
+		if !fi.IsDir() {
+			err = os.Remove(filepath.Join(PublicDir, fi.Name()))
+			if err != nil {
+				log.Println("DELETE ERROR ", err)
+			}
+		}
+	}
+	// Now read the posts
+	fis, err = ioutil.ReadDir(PostsDir)
 	if err != nil {
 		log.Fatal("FATAL ", err)
 	}
 	sfi := sortableFileInfo(fis)
 	sfi = FilterDir(sfi)
-	sort.Sort(sfi)
+	sort.Reverse(sfi)
 
 	recent := make([]*ShortPost, maxRecentPosts)
 	all := make([]*LongPost, len(sfi))
@@ -84,7 +100,7 @@ func regeneratePosts() {
 
 	for i, p := range all {
 		td := newTemplateData(p, i, recent, all)
-		regenerateFile(td)
+		regenerateFile(td, i == 0)
 	}
 }
 
@@ -118,11 +134,17 @@ type ShortPost struct {
 
 type LongPost struct {
 	*ShortPost
-	Content []byte
+	Content string
+}
+
+var rxSlug = regexp.MustCompile(`[^a-zA-Z\-_0-9]`)
+
+func getSlug(fnm string) string {
+	return rxSlug.ReplaceAllString(strings.Replace(fnm, filepath.Ext(fnm), "", 1), "-")
 }
 
 func newLongPost(fi os.FileInfo) *LongPost {
-	slug := strings.Replace(fi.Name(), filepath.Ext(fi.Name()), "", 1)
+	slug := getSlug(fi.Name())
 	sp := &ShortPost{
 		slug,
 		"author",      // TODO : Complete...
@@ -144,7 +166,7 @@ func newLongPost(fi os.FileInfo) *LongPost {
 	res := blackfriday.MarkdownCommon(b)
 	lp := &LongPost{
 		sp,
-		res,
+		string(res),
 	}
 	return lp
 }
@@ -162,13 +184,24 @@ func (lp *LongPost) Short() *ShortPost {
 // Next : The next (more recent) post
 // Previous : The previous (older) post
 
-func regenerateFile(td *TemplateData) {
+func regenerateFile(td *TemplateData, idx bool) {
+	var w io.Writer
+
 	fw, err := os.Create(filepath.Join(PublicDir, td.Post.Slug))
 	if err != nil {
 		log.Fatal("FATAL ", err)
 	}
 	defer fw.Close()
-	err = postTpl.ExecuteTemplate(fw, postTplNm, td)
+	w = fw
+	if idx {
+		idxw, err := os.Create(filepath.Join(PublicDir, "index.html"))
+		if err != nil {
+			log.Fatal("FATAL ", err)
+		}
+		defer idxw.Close()
+		w = io.MultiWriter(fw, idxw)
+	}
+	err = postTpl.ExecuteTemplate(w, postTplNm, td)
 	if err != nil {
 		log.Fatal("FATAL ", err)
 	}

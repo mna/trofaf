@@ -1,0 +1,44 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>007-implement-js</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-04-02
+Title: implement.js: typage fort et Javascript
+Author: Martin Angers
+Category: technologie
+Abstract: L&rsquo;injection de dépendance avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues.</p>
+
+<p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
+
+<p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>
+
+<h3>implement.js</h3>
+
+<p>C&rsquo;est là qu&rsquo;entre en scène ma nouvelle librairie offerte en logiciel libre, <a href="https://github.com/PuerkitoBio/implement.js">implement.js</a> (comme vous pouvez le constater, <em>je blog in French, mais je code in English</em>). Elle permet de valider qu&rsquo;un objet respecte une interface prédéfinie. Ou que les paramètres passés à une fonction sont bel et bien du type attendu. Ce sont là les deux principales fonctionnalités exposées par la librairie.</p>
+
+<p>Je ne reprendrai pas ici <a href="https://github.com/PuerkitoBio/implement.js#readme">le contenu du <em>readme</em> sur GitHub</a>, je vous suggère de le lire et de m&rsquo;avertir de toute information manquante ou ambigüe. Il s&rsquo;agit de ma première contribution &ldquo;significative&rdquo; au merveilleux monde du logiciel libre, et je le souhaite, pas la dernière! J&rsquo;ai aussi ajouté une branche dans mon projet expérimental <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a> pour intégrer l&rsquo;utilisation de <em>implement.js</em>, qui peut servir d&rsquo;exemple d&rsquo;utilisation, tout comme <a href="https://github.com/PuerkitoBio/implement.js/tree/master/examples">le répertoire <em>examples</em></a> de <em>implement.js</em>.</p>
+
+<h3>Essayez et participez!</h3>
+
+<p>Les prochaines étapes sont assez simples, je vous invite à essayer la librairie, si vous croyez qu&rsquo;elle peut être utile dans vos projets. N&rsquo;hésitez pas à la faire partager avec vos collègues développeurs, et à <a href="https://github.com/PuerkitoBio/implement.js/issues">ouvrir un rapport d&rsquo;anomalie</a> au besoin. Encore mieux, si vous le pouvez, soumettez un correctif (un <em>pull request</em>). Je prévois ajouter la documentation de l&rsquo;API avec <a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> sous peu, et possiblement rendre la librairie disponible dans le fureteur.</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="006-dependency-injection">&lt;&lt; 006-dependency-injection</a>
+		</div>
+		<div class="pager">
+			<a href="008-backbone-computed-properties">008-backbone-computed-properties >></a>
+		</div>
+	</body>
+</html>

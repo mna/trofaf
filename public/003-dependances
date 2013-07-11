@@ -1,0 +1,125 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>003-dependances</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-03-05
+Title: npm: la base essentielle pour débuter avec node.js
+Author: Martin Angers
+Category: technologie
+Abstract: La plateforme node.js est volontairement limitée, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions de sa communauté pour enrichir le noyau et repousser les limites du possible. Avec près de 8000 librairies à ce jour, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce au gestionnaire de librairies npm.</p>
+
+<p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
+
+<p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>
+
+<h3>La base: installation, désinstallation, indicateur global</h3>
+
+<p><em>npm</em> lui-même s&rsquo;installe de façon fort simple depuis quelques versions: il est livré avec node. Il s&rsquo;agit donc d&rsquo;installer node d&rsquo;une des <a href="https://github.com/joyent/node/wiki/Installation">nombreuses</a> <a href="https://github.com/creationix/nvm">façons</a> <a href="https://github.com/visionmedia/n">possibles</a>.</p>
+
+<p>Ensuite, toute librairie publiée dans <a href="http://search.npmjs.org/">le registre de npm</a> est à portée de main. Pour installer une librairie, par exemple le gestionnaire de versions <em>n</em>:</p>
+
+<pre><code>:::Bash shell scripts
+martin@LilDevil:~/sublime-wrkspc/crw$ npm install n
+npm http GET https://registry.npmjs.org/n
+npm http 200 https://registry.npmjs.org/n
+npm http GET https://registry.npmjs.org/n/-/n-0.7.0.tgz
+npm http 200 https://registry.npmjs.org/n/-/n-0.7.0.tgz
+n@0.7.0 ./node_modules/n
+</code></pre>
+
+<p>Seul bémol à propos de cette démonstration rayonnante de simplicité: la commande ne respecte pas <a href="http://www.faqs.org/docs/artu/ch01s06.html">la règle de silence de UNIX</a>, qui veut que si tu n&rsquo;as rien de spécial à dire, tu ne dis rien. En effet, sur UNIX et ses déclinaisons, on s&rsquo;attend à ce qu&rsquo;une commande qui fait ce qu&rsquo;on lui demande sans problème n&rsquo;affiche aucun message. C&rsquo;est mineur, mais c&rsquo;est une des philosophies importantes à respecter pour bien s&rsquo;intégrer à l&rsquo;ensemble.</p>
+
+<p>Une fois installée, la librairie est au bon endroit pour être retrouvée par node et utilisable dans notre code, via la commande habituelle <code>var librairie = require('librairie');</code>. Si on veut installer non seulement la librairie et ses dépendances pour qu&rsquo;elle s&rsquo;exécute correctement (l&rsquo;installation par défaut), mais aussi ses dépendances de développement, par exemple pour exécuter les tests automatisés de la librairie, alors on doit spécifier l&rsquo;indicateur -dev (<code>npm install n -dev</code>). Pour désinstaller, on s&rsquo;en doute, c&rsquo;est <code>npm uninstall n</code> (ou un alias équivalent, soit <code>npm remove</code> ou <code>npm rm</code>).</p>
+
+<p>Autres commandes de base toujours utiles, pour connaître la version actuelle de npm:</p>
+
+<pre><code>:::Bash shell scripts
+martin@LilDevil:~/sublime-wrkspc/crw$ npm -v
+1.1.4
+</code></pre>
+
+<p>Et pour lister les librairies installées dans le répertoire courant (dans cet exemple, les librairies utilisées par le <a href="http://www.compterenduweb.com/">Compte Rendu Web</a> à ce point-ci de son développement):</p>
+
+<pre><code>:::Bash shell scripts
+martin@LilDevil:~/sublime-wrkspc/crw$ npm ls
+crw@0.1.0 /home/martin/sublime-wrkspc/crw
+├── debug@0.5.0 
+├─┬ express@2.5.8 
+│ ├─┬ connect@1.8.5 
+│ │ ├── formidable@1.0.9 
+│ │ └── mime@1.2.5 
+│ ├── mime@1.2.4 
+│ ├── mkdirp@0.3.0 
+│ └── qs@0.4.2 
+├─┬ jade@0.20.3 
+│ ├── commander@0.5.2 
+│ └── mkdirp@0.3.0 
+├── less@1.2.2 
+├─┬ mocha@0.14.0 
+│ ├── commander@0.5.2 
+│ ├── diff@1.0.2 
+│ └── growl@1.5.0 
+├─┬ mongoose@2.5.9 
+│ ├── hooks@0.1.9 
+│ └── mongodb@0.9.7-3-5 
+├── request@2.9.153 
+├── should@0.6.0 
+└── uglify-js@1.2.5 
+</code></pre>
+
+<p><code>npm list</code> est équivalent, et <code>npm ll</code> (ou <code>npm la</code>) offre des informations plus détaillées. Par défaut, npm conserve toutes les dépendances localement, dans un sous-répertoire &ldquo;node_modules&rdquo; du répertoire courant. Ainsi, comme chaque librairie installée vient avec ses propres dépendances dans son propre sous-répertoire &ldquo;node_modules&rdquo;, une application node peut utiliser les librairies A et B, chacune ayant une dépendance sur C, mais A et B peuvent utiliser une version différente de C sans problème. On en voit un exemple concret sous la librairie <em>express</em>, qui dépend directement sur <em>mime</em>, alors que sa dépendance <em>connect</em> dépend aussi sur <em>mime</em>, mais dans une version distincte, et ce sans conflit:</p>
+
+<pre><code>:::Bash shell scripts
+├─┬ express@2.5.8 
+│ ├─┬ connect@1.8.5 
+│ │ ├── formidable@1.0.9 
+│ │ └── mime@1.2.5 
+│ ├── mime@1.2.4 
+│ ├── mkdirp@0.3.0 
+│ └── qs@0.4.2 
+</code></pre>
+
+<p>C&rsquo;est une qualité assez exceptionnelle parmi les environnements de développement, que <a href="http://www.mikealrogers.com/posts/nodemodules-in-git.html">Mikeal Rogers n&rsquo;a pas manqué de souligner</a>:</p>
+
+<blockquote>
+<p>Node’s local module support accomplishes what no other platform I know of has done, it allows for two dependencies to require entirely different versions of the same dependency without caveats and unforeseen failures.</p>
+</blockquote>
+
+<p>Parfois, on peut préférer une installation globale d&rsquo;une librairie, par exemple lorsqu&rsquo;il s&rsquo;agit d&rsquo;une application console (<em>command-line interface (CLI)</em>) que l&rsquo;on veut rendre disponible partout. npm supporte ce mode via l&rsquo;indicateur <code>-g</code> ou l&rsquo;équivalent <code>--global</code>. Ainsi, pour installer globalement: <code>npm install -g &lt;librairie&gt;</code>, pour lister les librairies installées globalement: <code>npm ls -g</code>, et ainsi de suite, les mêmes commandes s&rsquo;appliquent mais avec une portée globale. À noter que ce n&rsquo;est <strong>pas</strong> l&rsquo;option recommandée pour une librairie que l&rsquo;on veut utiliser dans le code d&rsquo;une application node. L&rsquo;approche locale à cette application est à privilégier dans ce cas (on verra pourquoi dans un futur article sur la gestion des dépendances).</p>
+
+<h3>Le registre au bout des doigts</h3>
+
+<p>J&rsquo;ai mentionné <a href="http://search.npmjs.org/">le registre de npm</a>, qui permet de rechercher avec des mots-clefs dans les nombreuses librairies disponibles. Or, il n&rsquo;est pas nécessaire d&rsquo;aller sur le site Web pour effectuer ces recherches. Avec npm, on a ce registre au bout des doigts, exploitable avec de simples commandes.</p>
+
+<pre><code>:::Bash shell scripts
+martin@LilDevil:~$ npm search /^jscov
+NAME        DESCRIPTION                    AUTHOR    DATE              KEYW
+jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
+</code></pre>
+
+<p>Ainsi, <code>npm search</code> suivi de mots à rechercher est équivalent à la recherche par le site Web. Il est également possible, tel que démontré dans l&rsquo;exemple, d&rsquo;utiliser une expression régulière en commençant le mot à rechercher par <code>/</code>. Pour afficher les informations détaillées d&rsquo;une librairie spécifique - par exemple ses dépendances et ses auteurs, c&rsquo;est la commande <code>npm view &lt;librairie&gt;</code>.</p>
+
+<p>Pour profiter des fonctionnalités non anonymes, il faut bien sûr se créer un compte utilisateur. C&rsquo;est tout simple, avec <code>npm adduser</code>, on peut choisir un nom d&rsquo;utilisateur, un mot de passe, et associer le tout à une adresse courriel. Ensuite il est possible d&rsquo;utiliser une des commandes méconnues qui a pourtant un potentiel intéressant pour découvrir les librairies de qualité: <code>npm star &lt;librairie&gt;</code>. C&rsquo;est l&rsquo;équivalent d&rsquo;un <em>j&rsquo;aime</em> de Facebook, et c&rsquo;est une information visible dans le registre. Elle gagnerait à être davantage utilisée et mieux exploitée, car plus l&rsquo;écosystème grossit, plus il devient difficile de discerner les librairies de calibre production, maintenues et codées de façon professionnelle, des projets de fin de semaine avec plus ou moins d&rsquo;avenir. C&rsquo;est une problématique <a href="http://mikkel.hoegh.org/blog/2011/12/20/trouble-in-node-dot-js-paradise-the-mess-that-is-npm/">qui commence à faire beaucoup jaser</a> dans la communauté, et une solution - ou du moins une amélioration - serait sur les planches à dessin du côté de l&rsquo;équipe de npm.</p>
+
+<p>Dans un prochain article j&rsquo;aborderai les commandes davantage liées à une librairie spécifique, son fichier <code>package.json</code>, et les bonnes pratiques (toujours en évolution!) pour la gestion des dépendances d&rsquo;une application node.</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="002-meta-billet">&lt;&lt; 002-meta-billet</a>
+		</div>
+		<div class="pager">
+			<a href="004-npm-packages">004-npm-packages >></a>
+		</div>
+	</body>
+</html>

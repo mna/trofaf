@@ -1,5 +1,4 @@
 extends layout
 
 block content
-	h1 #{Post.ShortPost.Title}
-	div #{Post.Content}
+	div #{unescaped(Post.Content)}

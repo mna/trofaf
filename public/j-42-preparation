@@ -1,0 +1,93 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>j-42-preparation</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-02-21
+Title: Propulsé par node.js
+Author: Martin Angers
+Category: technologie
+Abstract: Le développement d&rsquo;une application Web est ponctué d&rsquo;une multitude de choix technologiques. Pour le compte rendu Web, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&rsquo;a pourtant pas fait l&rsquo;objet d&rsquo;une réflexion, d&rsquo;une étude comparative. Loin s&rsquo;en faut. Il a plutôt été l&rsquo;élément déclencheur de tout le projet.</p>
+
+<p>Le développement d&rsquo;une application Web (d&rsquo;un <a href="http://fr.wikipedia.org/wiki/Logiciel_en_tant_que_service" title="Logiciel en tant que service">SaaS</a>, si vous préférez) est ponctué d&rsquo;une multitude de choix technologiques.
+Pour <a href="http://www.compterenduweb.com/">le compte rendu Web</a>, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&rsquo;a pourtant pas fait l&rsquo;objet
+d&rsquo;une réflexion, d&rsquo;une étude comparative. Loin s&rsquo;en faut. Il a plutôt été l&rsquo;élément déclencheur de tout le projet.</p>
+
+<p>C&rsquo;est au courant de sa version 0.4, quelque part en début 2011, que j&rsquo;ai découvert <a href="http://nodejs.org/">node.js</a> au hasard de je ne sais plus trop quel heureux furetage.
+Après quelques expérimentations et le visionnement de <a href="http://jsconf.eu/2009/video_nodejs_by_ryan_dahl.html">la mythique présentation</a> de son créateur, Ryan Dahl, je savais que je devais construire quelque
+chose avec cette merveille. Dire que le compte rendu Web est un prétexte pour utiliser node.js serait exagéré, mais j&rsquo;avais effectivement le choix du
+moteur technologique avant l&rsquo;idée d&rsquo;application.</p>
+
+<h3>Entrées/sorties événementielles, rien ne bloque!</h3>
+
+<p>C&rsquo;est amplement documenté, donc je passerai rapidement, mais la <em>révolution node</em> est que tous les appels qui, typiquement, sont bloquants (interrompent
+le traitement en attendant que l&rsquo;appel soit complété - comme à la lecture d&rsquo;un fichier sur disque, par exemple) sont gérés de façon asynchrone, permettant ainsi au
+traitement de se poursuivre et d&rsquo;être notifié par une procédure de rappel (un <em>callback</em>) lorsque l&rsquo;action demandée est complétée. Cette approche permet d&rsquo;écrire du code
+qui s&rsquo;exécute sur un seul fil d&rsquo;exécution (un <em>thread</em>), simplifiant drastiquement la gestion de concurrence d&rsquo;accès, et offrant une performance et une capacité
+de croissance (<em>scalability</em>) impressionnantes.</p>
+
+<p>Ce n&rsquo;est <a href="http://twistedmatrix.com/trac/" title="Python Twisted">ni le seul</a>, <a href="http://rubyeventmachine.com/" title="Ruby Event Machine">ni le premier</a> projet adoptant cette philosophie, mais c&rsquo;est possiblement celui qui le fait le mieux et qui rend l&rsquo;utilisation d&rsquo;opérations
+synchrones, bloquantes, l&rsquo;exception à spécifier explicitement plutôt que la règle. Cet exemple simpliste démontre la facilité avec laquelle on peut coder un serveur HTTP qui
+lit et retourne le contenu d&rsquo;un fichier au client, le tout sans bloquer le traitement:</p>
+
+<pre><code>:::javascript
+var http = require('http'),
+    fs = require('fs');
+
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    fs.readFile('helloworld', function (err, data) {
+        if (err) throw err;
+        res.write(data);
+        res.end();
+    });
+}).listen(1337, &quot;127.0.0.1&quot;);
+</code></pre>
+
+<p>Cet exemple démontre une autre particularité de node: contrairement à la plupart des autres technologies où le serveur HTTP est un logiciel externe à l&rsquo;application
+(pensons à Apache ou IIS, par exemple), ici le serveur est un membre à part entière, avec tout le contrôle que cela implique.</p>
+
+<p>L&rsquo;exemple démontre aussi l&rsquo;évidence pour l&rsquo;oeil averti: le langage utilisé pour coder avec node est javascript (d&rsquo;où le <code>.js</code> dans node.js). Ce n&rsquo;est pas un choix innocent, javascript étant
+naturellement adapté pour une approche par procédure de rappel, et n&rsquo;ayant aucune librairie existante (à l&rsquo;origine) pour faire de l&rsquo;entrée/sortie, il n&rsquo;y avait
+donc pas ce danger d&rsquo;utiliser une librairie bloquante. Les fonctionnalités d&rsquo;entrée/sortie, les librairies de gestion de protocoles internet et autres ont pu
+être développées à partir d&rsquo;une feuille vierge, avec dès le départ cette notion d&rsquo;asynchronisme, sans avoir à travestir de l&rsquo;existant. Et l&rsquo;engin d&rsquo;exécution
+du javascript est <a href="http://code.google.com/p/v8/" title="Google V8">le fameux V8 utilisé dans le fureteur Chrome de Google</a> - autre morceau essentiel du puzzle, car il n&rsquo;y a pas si longtemps, javascript n&rsquo;avait
+aucun environnement d&rsquo;exécution suffisamment performant pour oser rêver une utilisation <em>sérieuse</em> côté serveur.</p>
+
+<h3>L&rsquo;esprit de communauté</h3>
+
+<p>Tout ça est bien beau, mais la vraie force de node réside dans sa bouillonnante communauté concentrée sur le portail de partage de code source libre <a href="https://github.com/">GitHub</a>.
+Se sont greffés, dans le sillon de Dahl, de fabuleux talents tels:</p>
+
+<ul>
+<li><a href="http://tjholowaychuk.com/">T.J. Holowaychuk</a>, auteur principal de la couche d&rsquo;intergiciel (<em>middleware layer</em>)
+pour serveur HTTP <a href="http://www.senchalabs.org/connect/">Connect</a>, du populaire cadre d&rsquo;application Web (<em>framework</em>) <a href="http://expressjs.com/">Express</a>, et de l&rsquo;outil de test <a href="http://fr.wikipedia.org/wiki/Behavior_Driven_Development" title="Behavior-Driven Development">BDD</a> <a href="http://visionmedia.github.com/mocha/">Mocha</a>, entre autre.</li>
+<li><a href="https://github.com/creationix">Tim Caswell</a>, auteur du gestionnaire de versions de node <a href="https://github.com/creationix/nvm">nvm</a>, qui permet d&rsquo;installer différentes versions sur un poste et d&rsquo;activer celle que l&rsquo;on veut pour
+une session de ligne de commande bash (Linux ou Mac seulement), et créateur du blogue <a href="http://howtonode.org/">How To Node</a>.</li>
+<li><a href="http://www.mikealrogers.com/">Mikeal Rogers</a>, auteur de la simplissime librairie de requêtes HTTP <a href="https://github.com/mikeal/request">Request</a>, et organisateur de l&rsquo;événement <a href="http://www.nodeconf.com/">NodeConf</a>.</li>
+<li>Et pour relier ces îlots de génie en un tout symbiotique, il y a <a href="https://github.com/isaacs">Isaac Schlueter</a>, auteur du gestionnaire de librairie <a href="https://github.com/isaacs/npm">npm</a>, maintenant déployé par défaut
+avec node. L&rsquo;installation d&rsquo;une librairie pour node est aussi triviale que d&rsquo;écrire sur la ligne de commande <code>npm install &lt;nom_librairie&gt;</code>. À ce jour,
+<a href="http://search.npmjs.org/">plus de 7000 librairies</a> sont disponibles via npm. Isaac a récemment <a href="http://venturebeat.com/2012/01/30/dahl-out-mike-drop/">remplacé Ryan Dahl comme maître du code node</a>.</li>
+</ul>
+
+<p>Ce ne sont que quelques-uns des contributeurs exceptionnels de cet écosystème. Même <a href="http://blog.nodejs.org/2011/06/23/porting-node-to-windows-with-microsoft%E2%80%99s-help/">Microsoft n&rsquo;a pu résister à la vague node</a>, ayant participé au
+port de node sur la plateforme Windows.</p>
+
+<p>C&rsquo;est donc sur cette base solide et hyper motivante que repose le <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Propulsé par node.js, à plus d&rsquo;un niveau!</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="010-demenagement">&lt;&lt; 010-demenagement</a>
+		</div>
+	</body>
+</html>

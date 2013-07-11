@@ -1,0 +1,88 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>006-dependency-injection</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-03-27
+Title: Expérimentations sur l&rsquo;injection de dépendance avec node.js
+Author: Martin Angers
+Category: technologie
+Abstract: L&rsquo;injection de dépendance permet de découpler les différentes composantes d&rsquo;une application pour en faciliter l&rsquo;entretien, la testabilité, circonscrire l&rsquo;impact des changements, mais aussi pour imposer une façon d&rsquo;aborder la création de l&rsquo;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&rsquo;API bien défini.</p>
+
+<p>L&rsquo;injection de dépendance (<em>dependency injection</em>) permet de découpler les différentes composantes d&rsquo;une application pour en faciliter l&rsquo;entretien, la testabilité, circonscrire l&rsquo;impact des changements, mais aussi pour imposer une façon d&rsquo;aborder la création de l&rsquo;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&rsquo;API bien défini. Elle a comme effet secondaire, règle générale, une meilleure architecture.</p>
+
+<p>Dans les langages de programmation orientés-objet statiques, tels C# ou Java, le patron (<em>pattern</em>) d&rsquo;injection de dépendance prend la forme d&rsquo;une interface ou d&rsquo;une classe abstraite, d&rsquo;une (ou plusieurs) implémentation de cette interface, et d&rsquo;un <em>assembleur</em>, responsable de créer l&rsquo;instance concrète d&rsquo;une implémentation de l&rsquo;interface, et de l&rsquo;injecter dans un objet &ldquo;client&rdquo; de la dépendance. <a href="http://martinfowler.com/articles/injection.html">Martin Fowler a écrit un brillant article sur le sujet</a>, c&rsquo;est une lecture essentielle pour approfondir ce patron.</p>
+
+<p>Il existe, dans l&rsquo;écosystème node, des librairies imitant le patron des langages statiques. Une simple recherche avec <code>npm search dependency injection</code> en donne un aperçu. C&rsquo;est moins cette mécanique d&rsquo;assemblage, relativement simple et bien rodée, qui m&rsquo;intéresse dans le cas présent que les différentes façons de découpler deux modules avec Javascript, et plus spécifiquement sur la plateforme node. Dit autrement, j&rsquo;expérimente sur comment obtenir les bénéfices de l&rsquo;injection de dépendance, et non sur la traduction en javascript de l&rsquo;implémentation traditionnelle de ce patron.</p>
+
+<h3>Le laboratoire <em>express-boilerplate</em></h3>
+
+<p>Avec un langage dynamique comme Javascript et son <a href="http://fr.wikipedia.org/wiki/Programmation_orient%C3%A9e_prototype">héritage par prototype</a>, il y a d&rsquo;autres façons de faire. C&rsquo;est ce que j&rsquo;explore dans mon projet d&rsquo;expérimentation <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate sur GitHub</a>, qui évolue continuellement et qui est né de l&rsquo;intérêt à publier concrètement ma <a href="http://hypermegatop.calepin.co/structurer-une-application-web-avec-express-et-nodejs.html">structure de projet proposée pour une application Web avec Express</a>. Au moment d&rsquo;écrire ce billet, j&rsquo;ai validé deux approches, disponibles dans deux branches git distinctes:</p>
+
+<ul>
+<li><p><strong>simple-DI</strong> : Cette approche classique, toute simple, reçoit les dépendances en paramètres, et le fichier <em>app.js</em> est responsable de l&rsquo;assemblage. Par exemple, dans le module <em>router</em>:</p>
+
+<pre><code>:::javascript
+module.exports = function (server, handler) {
+    server.get('/', handler.renderIndex);
+};
+</code></pre>
+
+<p>et dans <em>app.js</em>:</p>
+
+<pre><code>:::javascript
+var server = require('./lib/server'),
+    db = require('./lib/db'),
+    handler = require('./lib/handler')(db);
+
+
+// Appeler router en lui passant ses dépendances
+require('./lib/router')(server, handler);
+</code></pre></li>
+
+<li><p><strong>prototype-extension</strong> : Cette branche utilise l&rsquo;extension du prototype du HTTPServer de Express pour injecter le module <em>config</em> dans le module <em>server</em>. C&rsquo;est un parfait exemple de ce que j&rsquo;entends quand je parle d&rsquo;obtenir &ldquo;les bénéfices de l&rsquo;injection de dépendance&rdquo;, et non la retranscription du patron. Cette solution repose toutefois sur une hypothèse non négligeable: la dépendance commune de ces deux modules sur Express, et cette dépendance sur Express  n&rsquo;est d&rsquo;ailleurs pas découplée dans mon <em>boilerplate</em>. Mais puisqu&rsquo;il s&rsquo;agit d&rsquo;un gabarit d&rsquo;application Web visant précisément ce cadre d&rsquo;application (ce <em>framework</em>), c&rsquo;est une concession que je juge acceptable. Ça donne ceci:</p>
+
+<pre><code>:::javascript
+// * * * * config.js * * * *
+express.HTTPServer.prototype.applyConfiguration = function () {
+    ...
+}
+
+
+// * * * * server.js * * * *
+server = express.createServer();
+
+
+// Dépendance sur le module config, injectée via cet appel
+server.applyConfiguration();
+
+
+module.exports = server;
+</code></pre></li>
+</ul>
+
+<h3>Versatilité vs rigueur</h3>
+
+<p>Cependant, ce qu&rsquo;on gagne en versatilité avec les langages dynamiques, on perd en rigueur (au sens &ldquo;rigueur intrinsèque au langage&rdquo;). L&rsquo;avantage de l&rsquo;approche avec interface des langages statiques, c&rsquo;est d&rsquo;avoir l&rsquo;assurance que la dépendance reçue expose toutes les fonctionnalités voulues - méthodes et propriétés. Avec Javascript, si on reprend mon dernier exemple, je n&rsquo;ai aucune assurance que le serveur Express implémente bel et bien <code>applyConfiguration()</code>. Dans un cas simple comme celui-ci, je pourrais aisément valider avant l&rsquo;appel que &ldquo;applyConfiguration&rdquo; est bien défini sur l&rsquo;objet &ldquo;server&rdquo;, et que c&rsquo;est bel et bien une fonction. Mais dans un cas plus complexe, où plusieurs méthodes et propriétés de la dépendance sont utilisées, ça peut rapidement devenir hors de contrôle.</p>
+
+<p>C&rsquo;est ce qu&rsquo;il manque, à mon avis, aux solutions actuelles sous Javascript. Quelque chose pour valider que le contrat attendu par le &ldquo;client&rdquo; soit respecté par la dépendance fournie. J&rsquo;ai quelques idées sur le sujet, on verra si ça mûrira, gardez l&rsquo;oeil sur <a href="https://github.com/PuerkitoBio/express-boilerplate">le référentiel GitHub</a>, et si vous avez commentaires et suggestions, l&rsquo;espace ci-bas est là pour ça!</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="005-structurer-express">&lt;&lt; 005-structurer-express</a>
+		</div>
+		<div class="pager">
+			<a href="007-implement-js">007-implement-js >></a>
+		</div>
+	</body>
+</html>

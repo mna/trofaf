@@ -1,0 +1,127 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>005-structurer-express</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-03-19
+Title: Structurer une application Web avec Express et Node.js
+Author: Martin Angers
+Category: technologie
+Abstract: La façon d&rsquo;organiser son code, en divers répertoires et fichiers, est en bonne partie une question de préférence personnelle. Le cadre d&rsquo;application Web Express n&rsquo;impose aucune structure particulière, laissant le développeur totalement libre d&rsquo;arranger le tout selon son inspiration du moment. Cette liberté peut parfois donner le vertige et provoquer un effet pervers: le syndrome de la page blanche.</p>
+
+<p>** MISE À JOUR ** (22 mars 2012) : J&rsquo;ai mis un exemple (simpliste, mais fonctionnel) de la structure suggérée dans ce billet sur GitHub, <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a>.</p>
+
+<hr />
+
+<p>La façon d&rsquo;organiser son code, en divers répertoires et fichiers, est en bonne partie une question de préférence personnelle. Le cadre d&rsquo;application Web (<em>Web framework</em>) <a href="http://expressjs.com/">Express</a> n&rsquo;impose aucune structure particulière, laissant le développeur totalement libre d&rsquo;arranger le tout selon son inspiration du moment. Cette liberté peut parfois donner le vertige et provoquer un effet pervers: le syndrome de la page blanche.</p>
+
+<p>C&rsquo;est probablement pourquoi <a href="http://stackoverflow.com/questions/9607947/how-should-i-structure-my-node-express-mongodb-app">la question</a> revient <a href="https://groups.google.com/forum/#!topic/express-js/9WrW3dxXqDs">aussi souvent</a>. Bien qu&rsquo;il n&rsquo;y ait pas de <em>bonne structure</em> canonique, les bonnes pratiques reconnues et un peu d&rsquo;expérimentation permettent d&rsquo;avancer une proposition réfléchie.</p>
+
+<h3>Par défaut: la structure Express</h3>
+
+<p>Quand je dis que Express n&rsquo;impose aucune structure, c&rsquo;est vrai, mais ce n&rsquo;est pas toute la vérité. Il <em>suggère</em> une structure, lorsqu&rsquo;on utilise l&rsquo;outil de ligne de commande pour créer un cadre de départ (ex.: <code>express struct_express</code>). Ça donne ceci (avec la version 2.5.5):</p>
+
+<pre><code>struct_express
+    public
+        images
+        javascripts
+        stylesheets
+    routes
+    views
+    app.js
+</code></pre>
+
+<p>On comprend aisément que <em>public</em> contient les contenus non sécurisés, utilisés par les pages html produites par l&rsquo;application et pris en charge par <a href="http://www.senchalabs.org/connect/">Connect</a> (le cadre applicatif plus générique sur lequel est construit Express) via l&rsquo;intergiciel (<em>middleware</em>) de fichiers statiques.</p>
+
+<p>Le répertoire <em>routes</em> porte à confusion, car à l&rsquo;analyse du code qu&rsquo;il contient (dans <em>index.js</em>), on n&rsquo;y retrouve non pas la définition des URLs et des verbes HTTP supportés par l&rsquo;application (la <em>route</em>), mais seulement l&rsquo;implémentation, la logique applicative rattachée à cette route:</p>
+
+<pre><code>:::javascript
+// Fichier /routes/index.js
+exports.index = function(req, res){
+    res.render('index', { title: 'Express' })
+};
+</code></pre>
+
+<p>La définition de la route comme telle, elle, se retrouve à la racine de l&rsquo;application, dans le fichier maître <em>app.js</em>:</p>
+
+<pre><code>:::javascript
+// Fichier /app.js
+var express = require('express')
+  , routes = require('./routes')
+
+// ...
+// Routes
+app.get('/', routes.index);
+</code></pre>
+
+<p>C&rsquo;est probablement acceptable pour de petits projets ou des tests rapides, mais pour une application d&rsquo;une certaine taille, une meilleure organisation du code est nécessaire. Personnellement, je veux:</p>
+
+<ul>
+<li>un fichier de tête le plus bête possible, qu&rsquo;il ne connaisse que les dépendances à obtenir et la façon de les assembler, sans aucune intelligence au niveau de l&rsquo;implémentation.</li>
+<li>des fichiers (des modules, si on adhère au vocabulaire du <a href="http://www.commonjs.org/">CommonJS</a> suivi par node) courts, simples à comprendre, respectant le <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">principe de responsabilité unique</a> (<em>single responsibility principle</em>).</li>
+<li>du découplage par injection de dépendance, du code facilement testable.</li>
+<li>une structure respectant les bonnes pratiques, les conventions généralement acceptées par la communauté.</li>
+</ul>
+
+<h3>Une saine organisation</h3>
+
+<p>Voici l&rsquo;organisation que je propose, qui permet de répondre à ces exigences:</p>
+
+<pre><code>struct_express_amelioree
+    lib
+        config
+        db
+        handler
+        router
+        server
+    public
+        css
+        img
+        js
+    test
+    views
+    app.js
+</code></pre>
+
+<p>Quelques constats rapides:</p>
+
+<ul>
+<li>Le code &ldquo;serveur&rdquo; se retrouve sous <em>/lib</em>, et les tests automatisés sous <em>/test</em>, une convention suivie par la plupart des ténors de la communauté.</li>
+<li>Sous <em>/public</em>, on retrouve les trois mêmes répertoires de contenu statique, mais avec des noms plus courts, simple question de préférence et quelques octets de gagnés!</li>
+<li>Sous <em>/views</em>, on retrouve les modèles de vues (<em>templates</em>) servant à produire les pages html. Personnellement j&rsquo;utilise <a href="http://jade-lang.com/">jade</a>, mais Express supporte d&rsquo;autres engins.</li>
+<li><em>/lib</em> contient le coeur de l&rsquo;application. Chaque sous-item a une responsabilité précise, et <a href="http://nodejs.org/api/modules.html#modules_folders_as_modules">grâce à la flexibilité offerte par node</a>, chaque sous-item peut prendre la forme d&rsquo;un fichier unique ou d&rsquo;un sous-répertoire et ainsi permettre une meilleure organisation (en multiples fichiers) de ce sous-item.</li>
+</ul>
+
+<p>Puisque c&rsquo;est là l&rsquo;essentiel du code serveur d&rsquo;une application Web, voici en détail chacun des sous-items de <em>/lib</em>:</p>
+
+<ul>
+<li><strong>config</strong> contient la configuration du serveur Express, soit en général la mise en place des intergiciels utilisés (<em>middleware</em>), la configuration de l&rsquo;engin de vues, la configuration de la gestion des erreurs selon l&rsquo;environnement d&rsquo;exécution, etc. Typiquement j&rsquo;utilise un seul fichier, donc il prend la forme de <em>config.js</em>.</li>
+<li><strong>db</strong> contient la couche d&rsquo;acces aux données, de même que la définition des modèles utilisés par l&rsquo;application. Certains préféreront peut-être appeler ce répertoire <em>models</em>. Personnellement j&rsquo;utilise souvent <a href="http://www.mongodb.org/">MongoDB</a> et la librairie node <a href="http://mongoosejs.com/">mongoose</a>, donc je structure <em>db</em> sous la forme d&rsquo;un répertoire avec <em>index.js</em> pour gérer la connexion à la base de données, et un fichier distinct par modèle, chacun des modèles étant exposé via <em>index.js</em>.</li>
+<li><strong>handler</strong> contient la logique applicative à appliquer lors de requêtes sur les routes supportées. Je découpe habituellement les implémentations en différents fichiers, par exemple un fichier distinct pour les <em>handlers</em> des routes REST de chaque modèle. Ces implémentations sont indépendantes des routes, la définition de celles-ci étant l&rsquo;affaire du&hellip;</li>
+<li><strong>router</strong>, qui contient la définition des routes supportées par l&rsquo;application. Là aussi, je suis le même découpage que pour les <em>handlers</em>, donc un fichier contenant les routes REST d&rsquo;un modèle, un fichier contenant les routes de l&rsquo;interface utilisateur, etc.</li>
+<li><strong>server</strong> contient la création du serveur HTTP comme tel, ce qui est généralement appelé l&rsquo;&ldquo;app&rdquo; dans les exemples d&rsquo;Express, mais qui est plus spécifiquement le serveur Web (l&rsquo;application étant l&rsquo;ensemble des modules et leurs dépendances!). C&rsquo;est souvent un module très simple, qui peut se limiter à appeler <code>express.CreateServer()</code>, donc j&rsquo;utilise un seul fichier, <em>server.js</em>.</li>
+</ul>
+
+<p>Ce qui laisse un fichier de tête <em>app.js</em> effectivement très simple et sans intelligence autre que l&rsquo;assemblage des modules, l&rsquo;injection des dépendances, et l&rsquo;appel à <code>server.listen()</code> pour démarrer l&rsquo;application Web. Ça donne une organisation saine, qui permet de respecter le patron <a href="http://fr.wikipedia.org/wiki/Mod%C3%A8le-Vue-Contr%C3%B4leur">MVC</a> où, grossièrement, le modèle est <em>/lib/db</em>, la vue est <em>/views</em> et le contrôleur est une combinaison de <em>/lib/router</em> et <em>/lib/handler</em>, le <em>router</em> jouant le rôle d&rsquo;&ldquo;agent messager&rdquo;, et le <em>handler</em> contenant la logique comme telle. D&rsquo;ailleurs j&rsquo;utilise un découpage semblable pour organiser le code côté client (en développement, avant de les <em>minifier</em>), dans mes fichiers sous <em>/public/js</em> avec <a href="http://backbonejs.org/">backbone.js</a>, mais c&rsquo;est une histoire pour un autre billet.</p>
+
+<p>Est-ce que votre organisation du code ressemble à ça? Utilisez-vous quelque chose de radicalement différent? Faites-en part dans les commentaires!</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="004-npm-packages">&lt;&lt; 004-npm-packages</a>
+		</div>
+		<div class="pager">
+			<a href="006-dependency-injection">006-dependency-injection >></a>
+		</div>
+	</body>
+</html>

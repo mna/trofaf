@@ -1,0 +1,82 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>008-backbone-computed-properties</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-04-13
+Title: Propriétés calculées avec Backbone
+Author: Martin Angers
+Category: technologie
+Abstract: La beauté de l&rsquo;univers du code libre est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées avec Backbone.</p>
+
+<p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
+
+<h3>Pas encore une controverse Backbone vs Knockout&hellip;</h3>
+
+<p>Backbone et <a href="http://knockoutjs.com/">Knockout</a> sont deux superbes librairies (parmi tant d&rsquo;autres!) de type <a href="http://www.codeproject.com/Articles/42830/Model-View-Controller-Model-View-Presenter-and-Mod#_articleTop">MV*</a> qui offrent une meilleure façon d&rsquo;organiser et de découper le code client. Personnellement je préfère Backbone pour son côté minimaliste, <em>juste assez</em>, sans magie et très extensible. Il y a toutefois une fonctionnalité intéressante de Knockout qui m&rsquo;a manqué récemment, soit la possibilité de créer des <em>computed observables</em>, dans le jargon de KO.</p>
+
+<p>L&rsquo;idée est simple, ayant une propriété &ldquo;nom&rdquo; et &ldquo;prénom&rdquo;, on peut créer une propriété calculée &ldquo;nomComplet&rdquo; qui concatène les deux. Ça va plus loin, on peut même assigner une valeur à cette propriété calculée, et les propriétés &ldquo;réelles&rdquo; sous-jacentes peuvent être ainsi renseignées. J&rsquo;avais un besoin pour ce type de comportement. Bien sûr, avec Backbone, il y a d&rsquo;autres façons de s&rsquo;en sortir, avec du code dans la vue (<code>Backbone.View</code>) qui s&rsquo;abonne aux événements <code>change:nomAttribut</code> et qui réagit en conséquence, mais voilà, j&rsquo;utilise aussi <a href="https://github.com/derickbailey/backbone.modelbinding">Backbone.ModelBinding</a> pour lier les champs HTML aux attributs du modèle, et ça ne me disait pas du tout d&rsquo;avoir une partie du modèle liée et une autre gérée manuellement dans la vue.</p>
+
+<p>J&rsquo;avais donc ce qui commençait à ressembler à des spécifications:</p>
+
+<ul>
+<li>Une propriété calculée peut être basée sur un ou plusieurs attributs &ldquo;réels&rdquo; d&rsquo;un modèle.</li>
+<li>Lorsqu&rsquo;un de ces attributs lance un événement &ldquo;change&rdquo;, la propriété calculée lance son propre événement &ldquo;change&rdquo;, afin de permettre aux observateurs de rafraîchir la donnée calculée.</li>
+<li>La propriété calculée doit supporter la lecture et l&rsquo;écriture.</li>
+<li>La propriété calculée ne doit <strong>pas</strong> polluer le tableau des attributs &ldquo;réels&rdquo; du modèle (<code>Backbone.Model.attributes</code>), ni - par le fait même - le JSON envoyé au serveur lors des sauvegardes (ce sont des propriétés <em>calculées</em>, donc déduites à partir d&rsquo;autres attributs, pas d&rsquo;intérêt à les sauvegarder).</li>
+<li>L&rsquo;implémentation doit être compatible avec Backbone.ModelBinding.</li>
+</ul>
+
+<h3>L&rsquo;implémentation</h3>
+
+<p>Certains voudront peut-être <a href="https://gist.github.com/2371954">sauter au code</a> pour revenir aux explications par la suite. Faites ça vite, je vous attends.</p>
+
+<p>Sur le modèle comme tel, une seule nouvelle propriété est requise, soit <code>Model.computedProperties</code>, qui est une instance de <code>ComputedProperties</code>. Cette classe supporte trois méthodes: <code>add()</code>, <code>remove()</code> et <code>clear()</code>, et conserve les propriétés calculées dans un tableau <code>ComputedProperties.properties</code>. Rien de bien captivant à ce niveau, c&rsquo;est plutôt sur la classe <code>ComputedProperty</code> (notez la nuance) que le tout se déroule.</p>
+
+<p>Une propriété calculée est créée en passant 4 informations à <code>ComputedProperties.add()</code> (soit en un seul objet, soit en 4 paramètres distincts):</p>
+
+<ol>
+<li><code>name</code>: le nom de la propriété calculée.</li>
+<li><code>attributes</code>: un tableau (<em>array</em>) des attributs du modèle sur lesquels est basée la propriété calculée. La <code>ComputedProperty</code> s&rsquo;abonnera aux événements &ldquo;change:<attribut>&rdquo; de ceux-ci pour déclencher son propre événement &ldquo;change:<compProp>&rdquo;.</li>
+<li><code>getter</code>: la fonction appelée pour obtenir la valeur de la propriété calculée. Celle-ci ne reçoit aucun paramètre et s&rsquo;exécute dans le contexte du modèle (<code>this</code> est le modèle, permettant ainsi d&rsquo;appeler <code>this.get(&quot;attr&quot;)</code> pour obtenir les valeurs des attributs).</li>
+<li><code>setter</code>: la fonction appelée pour assigner la valeur à la propriété calculée, exécutée dans le contexte du modèle. Règle générale, celle-ci devrait assigner une valeur aux attributs de base, déclenchant ainsi le &ldquo;change&rdquo; de l&rsquo;attribut qui déclenche le &ldquo;change&rdquo; de la propriété calculée (vous me suivez?). Si - étrangement - le <em>setter</em> n&rsquo;assigne de valeur à aucun attribut relié à la propriété calculée, alors celui-ci devra déclencher manuellement le &ldquo;change&rdquo; de la propriété. La fonction reçoit deux paramètres, la nouvelle valeur et l&rsquo;objet des options (le même que celui reçu par <code>Backbone.Model.set()</code>). Information importante à ce sujet: si les options spécifient <code>unset: true</code> (ou n&rsquo;importe quelle autre option pertinente, tant qu&rsquo;à ça), il est de la responsabilité du <em>setter</em> d&rsquo;agir en conséquence.</li>
+</ol>
+
+<p>Seul le <code>name</code> est obligatoire. La classe <code>ComputedProperty</code> offre d&rsquo;autres méthodes utilitaires, telles que <code>isReadOnly()</code>, <code>isReadWrite()</code> et <code>isWriteOnly()</code>.</p>
+
+<p>Reste maintenant à attacher le tout. <strong>Backbone.ModelBinding</strong> écoute les événements &ldquo;change:attr&rdquo; pour assigner la valeur aux éléments de la page Web (s&rsquo;attendant à retrouver la valeur comme 2ème paramètre). L&rsquo;implémentation des propriétés calculées répond à ce cas d&rsquo;utilisation. Inversement, lorsque la valeur est modifiée dans le champ de la page Web, il utilise <code>model.set(&quot;attribut&quot;)</code>, alors qu&rsquo;on veut justement éviter que la propriété calculée aboutisse dans les attributs. Il faut faire quelque chose pour gérer ce cas. Et ce serait bien aussi de pouvoir faire <code>model.get(&quot;nomPropCalculee&quot;)</code> et obtenir la valeur de celle-ci.</p>
+
+<p>C&rsquo;est pourquoi le modèle de base hérité de <code>Backbone.Model</code> substitue les méthodes <code>get()</code> et <code>set()</code> pour intercepter les cas où un nom de propriété calculée est reçu, et éviter qu&rsquo;elle se retrouve dans les attributs et soit transférée au serveur.</p>
+
+<p>J&rsquo;ai écrit une cinquantaine de tests unitaires (avec <a href="http://visionmedia.github.com/mocha/">Mocha</a> comme engin de test, <a href="https://github.com/LearnBoost/expect.js">expect.js</a> pour les assertions et <a href="http://sinonjs.org/">sinon.js</a> pour les <a href="http://en.wikipedia.org/wiki/Test_double">doubles de test</a>, c&rsquo;est une superbe combinaison que je recommande!), ça semble assez solide quoique rapidement codé et testé pour le moment. Il y a seulement quelques trucs à savoir et sur lesquels méditer:</p>
+
+<ul>
+<li>D&rsquo;abord, l&rsquo;événement &ldquo;change&rdquo; de la propriété calculée est déclenché chaque fois qu&rsquo;un attribut utilisé par cette propriété est modifié. Si plusieurs attributs sont modifiés en un seul appel à <code>Model.set()</code>, plusieurs &ldquo;change&rdquo; de la propriété calculée seront déclenchés.</li>
+<li>Ensuite, il y a peut-être des cas plus complexes d&rsquo;utilisation de <code>Backbone.Model.set()</code> ou <code>Backbone.Model.save()</code> qui m&rsquo;ont échappé et qui fonctionnent mal avec la substitution du <code>set()</code>. Si vous en trouvez, m&rsquo;en faire part, je maintiendrai le <em>gist</em> à jour. Je doute que le <code>get()</code> pose problème.</li>
+<li>Le fait que les propriétés calculées ne se retrouvent pas dans les attributs était pour moi un objectif important, mais je peux imaginer certains cas où on voudrait à tout le moins les avoir dans le JSON (par exemple si on utilise <code>Backbone.Model.toJSON()</code> pour passer le résultat à un modèle de vue - un <em>template</em>). Ce serait très simple d&rsquo;ajouter un paramètre dans une substitution de <code>toJSON()</code> pour indiquer que l&rsquo;on désire y retrouver aussi ces propriétés, et lors de l&rsquo;envoi au serveur par un <code>save()</code> interne à Backbone, ce paramètre ne serait pas fourni, donc les propriétés ne seraient pas envoyées.</li>
+<li>Et finalement, il y a l&rsquo;aspect conceptuel de la chose, qui éloigne le modèle de la représentation des données et l&rsquo;approche de la représentation &ldquo;humaine&rdquo;. Ça rend Backbone un peu plus MVVM que MVC, si on veut.</li>
+</ul>
+
+<h3>Un gist pour le moment</h3>
+
+<p>J&rsquo;ai mis le code source dans ce <a href="https://gist.github.com/2371954">gist</a>, car le tout fait à peine 100 <a href="http://en.wikipedia.org/wiki/Source_lines_of_code">sloc</a>, il est probablement préférable de le copier et l&rsquo;insérer dans son modèle Backbone de base (et de le minifier avec son code maison) plutôt que de le distribuer comme une librairie indépendante. Et en plus, le code assume qu&rsquo;il hérite directement de Backbone.Model, alors que ce n&rsquo;est pas forcément le cas. Qui sait, peut-être qu&rsquo;un auteur de librairie Backbone de plus haut niveau sera intéressé à l&rsquo;intégrer dans son cadre de développement (<em>framework</em>).</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="007-implement-js">&lt;&lt; 007-implement-js</a>
+		</div>
+		<div class="pager">
+			<a href="009-je-men-vais">009-je-men-vais >></a>
+		</div>
+	</body>
+</html>

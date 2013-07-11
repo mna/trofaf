@@ -1,0 +1,139 @@
+<!DOCTYPE html><!-- From HTML5 Boilerplate -->
+<html class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>004-npm-packages</title>
+		<meta name="description" content="description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/normalize.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+	</head>
+	<body>
+		
+		<article>
+			<div><p>Date: 2012-03-12
+Title: npm shrinkwrap: Comment contrôler ses dépendances
+Author: Martin Angers
+Category: technologie
+Abstract: Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
+
+<p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
+
+<blockquote>
+<p>&ldquo;A dependency upon a package is a dependency upon everything within the package. When a package changes, and its release number is bumped, all clients of that package must verify that they work with the new package - even if nothing they used within the package actually changed.&rdquo;<br />
+- Robert C. Martin</p>
+</blockquote>
+
+<h3>Le cas général: package.json</h3>
+
+<p>Le premier niveau de contrôle est fourni par npm via le fichier de méta-données <a href="http://npmjs.org/doc/json.html">package.json</a>. Celui-ci offre quatre clefs de configuration pour gérer les dépendances de l&rsquo;application:</p>
+
+<ol>
+<li><strong>dependencies</strong>: un dictionnaire où la clef est le nom de la librairie, et la valeur est une version, qui peut s&rsquo;exprimer de plusieurs façons, j&rsquo;y reviens dans un instant.</li>
+<li><strong>devDependencies</strong>: un autre dictionnaire qui prend la même forme que pour <em>dependencies</em>, mais qui contient les dépendances requises seulement en mode développement, généralement les librairies de test automatisé ou de génération de documentation. Ces dépendances ne sont pas installées par défaut, mais elles peuvent l&rsquo;être avec la commande <code>npm install &lt;librairie&gt; -dev</code>.</li>
+<li><strong>bundledDependencies</strong>: un tableau (<em>array</em>) complémentaire à <em>dependencies</em> qui liste les librairies qui devront être publiées <strong>avec</strong> la librairie décrite par ce <em>package.json</em>. C&rsquo;est une configuration utilisée en de rares cas, dont npm lui-même, puisqu&rsquo;il ne peut dépendre sur npm pour déployer ses dépendances! Règle générale, il est recommandé de ne <em>pas</em> utiliser cette approche - qui force à redéployer ce regroupement de librairies à chaque changement dans une dépendance - et plutôt de laisser npm résoudre le tout dynamiquement.</li>
+<li><strong>engine</strong>: un dictionnaire un peu particulier, en ce sens qu&rsquo;il est l&rsquo;équivalent de <em>dependencies</em>, mais pour spécifier les versions de node ciblées (et possiblement les versions de npm).</li>
+</ol>
+
+<p>Chaque dictionnaire permet de spécifier une ou des versions permises pour chaque dépendance. L&rsquo;information de version peut être spécifiée de nombreuses façons:</p>
+
+<ul>
+<li>Version spécifique (ex.: &ldquo;1.2.4&rdquo; ou &ldquo;=1.2.4&rdquo;)</li>
+<li>Version minimum ou maximum (ex.: &ldquo;<1.2.4", ">=1.2.4&rdquo;)</li>
+<li>Toute version (&rdquo;*&rdquo; ou &ldquo;&rdquo;)</li>
+<li>Une étendue (sous la forme &ldquo;&gt;=1.2.4 <1.3.0", ou "1.2.4 - 1.3.2", qui est une étendue *inclusive*, donc équivalent à ">=1.2.4 &lt;=1.3.2&rdquo;, ou encore &ldquo;1.2.x&rdquo; où le &ldquo;x&rdquo; peut être n&rsquo;importe quel chiffre, donc dans cet exemple, correspond à &ldquo;&gt;=1.2.0 <1.3.0", et "1.x" correspond à ">=1.0.0 &lt;2.0.0&rdquo;)</li>
+<li>Une étendue spécifiée par un tilde (&rdquo;~1.2.4&rdquo; qui correspond à &ldquo;&gt;=1.2.4 <1.3.0", alors que "~1.2" correspond à ">=1.2.0 &lt;2.0.0&rdquo;)</li>
+</ul>
+
+<p>Il est de plus possible de combiner différentes étendues grâce à l&rsquo;opérateur <code>||</code> qui est un &ldquo;ou&rdquo; logique (le &ldquo;et&rdquo; est l&rsquo;opérateur par défaut, soit l&rsquo;espace entre deux versions). Ainsi, cet exemple est valide: <code>&quot;&lt;1.1.0 || &gt;=3.1.0 &lt;3.3.0&quot;</code>. npm supporte même, en lieu et place d&rsquo;un critère de version, une adresse URL pointant vers une archive de type <a href="http://fr.wikipedia.org/wiki/Tar_(informatique)">tar</a> (un <em>tarball</em>) contenant la librairie voulue et un fichier package.json, ou un référentiel (<em>repository</em>) <a href="http://fr.wikipedia.org/wiki/Git">git</a>.</p>
+
+<p>Les versions de librairies doivent se conformer au <a href="http://semver.org/">versionnage sémantique</a>, <a href="http://npmjs.org/doc/semver.html">légèrement adapté</a> dans le contexte de l&rsquo;écosystème node. L&rsquo;essentiel du versionnage sémantique est que toute version comporte trois chiffres: M.m.r (<strong>M</strong>ajeure, <strong>m</strong>ineure, <strong>r</strong>ustine ou <em>patch</em>). Il est possible d&rsquo;ajouter un numéro de génération (<em>build</em>) sous la forme M.m.r-gen, ou un libellé quelconque (<em>tag</em>), par exemple 1.2.0beta. La version sans libellé est considérée plus grande que celle avec libellé (&ldquo;1.2.0&rdquo; &gt; &ldquo;1.2.0beta&rdquo;). Les principales règles à suivre, et elles sont essentielles à la bonne cohabitation des dépendances, sont les suivantes:</p>
+
+<ul>
+<li>Toute nouvelle publication doit avoir une nouvelle version, supérieure à la précédente (c&rsquo;est l&rsquo;évidence).</li>
+<li>Le numéro de rustine doit être incrémenté si les seuls changements sont des corrections dans l&rsquo;implémentation interne, sans impact sur l&rsquo;<a href="http://fr.wikipedia.org/wiki/Interface_de_programmation">API</a> exposé.</li>
+<li>Le numéro mineur doit être incrémenté si de nouvelles fonctionnalités sont introduites sans bris de compatibilité dans l&rsquo;API public, ou si une fonctionnalité de l&rsquo;API est en délestage, ou si des changements substantiels sont introduits dans l&rsquo;implémentation interne. Le numéro de rustine doit être réinitialisé à 0 lors d&rsquo;une incrémentation de numéro mineur.</li>
+<li>Le numéro majeur doit être incrémenté si un bris de compatibilité est introduit dans l&rsquo;API public. Le numéro mineur et celui de rustine doivent être réinitialisés à zéro.</li>
+</ul>
+
+<p>C&rsquo;est pourquoi il n&rsquo;est pas rare de voir des dépendances définies par une étendue sur la rustine ou même le numéro mineur (&ldquo;1.2.x&rdquo; ou &ldquo;1.x&rdquo;, par exemple), puisque ça garantit, si le versionnage sémantique est honoré par l&rsquo;auteur de la librairie, que les versions dans ces étendues respecteront toutes au minimum l&rsquo;API utilisé.</p>
+
+<h3>Problématique et piste de solution</h3>
+
+<p>Le problème avec cette approche, c&rsquo;est que bien que les versions des dépendances directes de l&rsquo;application soient contrôlées, les dépendances de ces dépendances (et ainsi de suite dans la hiérarchie) sont hors de notre contrôle. En fait, elles sont contrôlées par le package.json de leur librairie &ldquo;parent&rdquo;. Ainsi, il est possible qu&rsquo;en développement, on ait cette hiérarchie:</p>
+
+<pre><code>appA (v0.1.0)
+ - libB (v0.0.1)
+   - libC (v0.1.0)
+</code></pre>
+
+<p>Et que lors du déploiement en production, via un <code>npm install</code> tout frais sur notre <em>appA</em> rigoureusement testée:</p>
+
+<pre><code>appA (v0.1.0)
+ - libB (v0.0.1)
+   - libC (v0.2.0)
+</code></pre>
+
+<p>Sans crier gare, voilà que la version 0.2.0 de <em>libC</em> fait son entrée en scène, en production, sans jamais avoir été testée dans le contexte de notre application.</p>
+
+<p>C&rsquo;est ce type de problème qui a mené Mikeal Rogers à écrire <a href="http://www.mikealrogers.com/posts/nodemodules-in-git.html">ce billet</a> sur une nouvelle façon de faire: inscrire le répertoire &ldquo;node_modules&rdquo; (qui contient toutes les dépendances) dans le référentiel de code source git. L&rsquo;idée est intéressante, l&rsquo;application est développée et testée avec un jeu de dépendances, le tout est inscrit dans git, donc un simple <code>git clone</code> du référentiel source installe l&rsquo;application et toutes ses dépendances, figées récursivement lors du dernier <code>git commit</code>.</p>
+
+<p>Attention, on parle ici d&rsquo;<em>applications à déployer</em>, <strong>pas</strong> de <em>librairies réutilisables</em>. Ces dernières ne devraient pas figer leurs dépendances de façon aussi drastique. Mikeal aborde le sujet dans son article sous l&rsquo;angle de la responsabilité des tests d&rsquo;intégration, j&rsquo;ajouterais un autre argument pourquoi les librairies réutilisables devraient s&rsquo;en tenir aux étendues de version du package.json et ne pas figer dans le temps leurs dépendances: elles ne savent pas quand elles seront déployées en production. Pour une application, on fige les versions des dépendances à un moment précis dans le temps, généralement vers la fin du développement, avant la gamme d&rsquo;essais précédant la mise en production. Si les librairies réutilisables figent leurs dépendances au moment de leur <em>publication</em>, elles privent potentiellement leurs applications &ldquo;clientes&rdquo; de correctifs importants dans leurs propres dépendances.</p>
+
+<p>Pour reprendre l&rsquo;exemple précédent de l&rsquo;<em>appA</em>, il est normal et même souhaitable que <em>libB</em> permette à sa dépendance <em>libC</em> d&rsquo;évoluer dans les limites de la compatibilité de son API. Cependant, l&rsquo;exemple souligne l&rsquo;importance d&rsquo;avoir une mécanique permettant aux applications &ldquo;déployables&rdquo; de garder la maîtrise du processus.</p>
+
+<h3>L&rsquo;emballage cadeau: shrinkwrap</h3>
+
+<p>Bien que théoriquement solide, l&rsquo;approche des dépendances dans git a quelques défauts, principalement au niveau des <a href="http://blog.nodejs.org/2012/02/27/managing-node-js-dependencies-with-shrinkwrap/">dépendances binaires</a> (voir dans l&rsquo;article lié la section &ldquo;<em>Why not just check node_modules into git?</em>&rdquo;). Il est difficile de bien déterminer ce qui doit être exclu de git (seul le code source servant à reconstituer le binaire devrait être inclus), et tel que documenté dans l&rsquo;article référencé, il faut alors regénérer les binaires dans l&rsquo;environnement cible, lors d&rsquo;un déploiement, ce qui n&rsquo;est pas sans risque. L&rsquo;option d&rsquo;inscrire même les binaires dans git a été envisagée, mais il y a alors le risque d&rsquo;erreur humaine (si le code est changé sans recompiler le binaire).</p>
+
+<p>La solution proposée est cette nouvelle commande de npm, <a href="http://blog.nodejs.org/2012/02/27/managing-node-js-dependencies-with-shrinkwrap/">lancée sur le blogue de node</a> (et qui a eu étonnamment peu d&rsquo;écho jusqu&rsquo;ici, si je me fie à mes recherches google), <em>shrinkwrap</em>! Son usage est très simple, l&rsquo;exécution de <code>npm shrinkwrap</code> dans le répertoire d&rsquo;une application avec un package.json conforme (les dépendances doivent y être correctement listées, et aucune librairie superflue ne doit être installée dans &ldquo;node_modules&rdquo;) génère un fichier &ldquo;npm-shrinkwrap.json&rdquo; qui contient la version <em>actuellement installée</em> de chacune des dépendances, de façon récursive. Lorsque ce fichier est présent, npm l&rsquo;utilise plutôt que les package.json pour contrôler l&rsquo;installation des librairies. Citation de <a href="http://blog.nodejs.org/author/davepacheco/">Dave Pacheco</a> de Joyent - la société derrière node.js:</p>
+
+<blockquote>
+<p>When &ldquo;npm install&rdquo; installs a package with a npm-shrinkwrap.json file in the package root, the shrinkwrap file (rather than package.json files) completely drives the installation of that package and all of its dependencies (recursively).</p>
+</blockquote>
+
+<p>À titre d&rsquo;exemple, voici un extrait de mon fichier shrinkwrap pour le <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>:</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;crw&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;dependencies&quot;: {
+    &quot;debug&quot;: {
+      &quot;version&quot;: &quot;0.5.0&quot;
+    },
+    &quot;express&quot;: {
+      &quot;version&quot;: &quot;2.5.8&quot;,
+      &quot;dependencies&quot;: {
+        &quot;connect&quot;: {
+          &quot;version&quot;: &quot;1.8.5&quot;,
+          &quot;dependencies&quot;: {
+            &quot;formidable&quot;: {
+              &quot;version&quot;: &quot;1.0.9&quot;
+            }
+          }
+        },
+</code></pre>
+
+<p>Il est encore possible de demander à npm quelles librairies ne sont pas à jour avec <code>npm outdated</code>, ce qui donne dans mon cas:</p>
+
+<pre><code>mongoose@2.5.10 ./node_modules/mongoose current=2.5.9
+mime@1.2.5 ./node_modules/express/node_modules/connect/node_modules/mime current=1.2.4
+</code></pre>
+
+<p>Si je veux mettre mes dépendances à jour, c&rsquo;est toujours possible avec <code>npm update</code>, mais tant que je ne recrée pas le fichier <em>shrinkwrap</em>, si je réexécute <code>npm install</code>, je reviens aux vieilles versions spécifiées dans ce fichier. Pour conserver les versions à jour, je dois refaire <code>npm shrinkwrap</code> suite au <code>npm update</code>. Autrement dit, du moment que <em>shrinkwrap</em> est utilisé, les versions installées par npm sont entièrement sous mon contrôle.</p>
+
+<h3>Brèche de sécurité dans le registre</h3>
+
+<p>Un mot en terminant sur le <a href="http://search.npmjs.org/">registre</a>, je mentionnais dans mon <a href="http://hypermegatop.calepin.co/npm-la-base-essentielle-pour-debuter-avec-nodejs.html">dernier article sur npm</a> qu&rsquo;il était nécessaire de se créer un compte pour utiliser certaines commandes. Et bien une brèche de sécurité a été découverte (et corrigée). Un courriel a été envoyé par Isaac à tous ceux qui avaient fourni une adresse valide, mais je sais qu&rsquo;il a eu des problèmes avec GMail et certains n&rsquo;ont pas reçu l&rsquo;information, donc si c&rsquo;est votre cas, assurez-vous de consulter ce <a href="https://gist.github.com/2001456">gist</a> qui reprend le contenu du courriel et les étapes à suivre pour sécuriser votre compte.</p>
+</div>
+		</article>
+		<div class="pager">
+			
+			<a href="003-dependances">&lt;&lt; 003-dependances</a>
+		</div>
+		<div class="pager">
+			<a href="005-structurer-express">005-structurer-express >></a>
+		</div>
+	</body>
+</html>
