@@ -6,6 +6,10 @@ import (
 	"path/filepath"
 )
 
+const (
+	SiteName = "Some Name"
+)
+
 type options struct {
 	Port int `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
 }

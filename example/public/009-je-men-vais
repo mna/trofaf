@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		
+		<div class="header">
+			<a href="/">Some Name</a>
+		</div>
 		<article>
 			<div><p>Date: 2012-04-23
 Title: Je suis venu te dire que je m&rsquo;en vais

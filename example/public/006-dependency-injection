@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		
+		<div class="header">
+			<a href="/">Some Name</a>
+		</div>
 		<article>
 			<div><p>Date: 2012-03-27
 Title: Expérimentations sur l&rsquo;injection de dépendance avec node.js

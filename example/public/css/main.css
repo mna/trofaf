@@ -19,6 +19,7 @@ textarea {
 }
 
 body {
+	font-family: 'Helvetica Neue', 'Sans Serif';
     font-size: 1em;
     line-height: 1.4;
 }
@@ -97,12 +98,23 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-body {
-	font-family: 'Helvetica Neue', 'Sans Serif';
+article {
 	padding: 0 10% 0 10%;
 }
 
-.pager {
+.header {
+	background-color: #000000;
+	padding: 10px 10% 10px 10%;
+	height: 60px;
+}
+
+.header a {
+	color: #FFFFFF;
+	font-size: 2.5em;
+	text-decoration:none;
+}
+
+.pager, .pager:hover, .pager:active, .pager:visited, .pager:link {
 	color: blue;
 }
 

@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		
+		<div class="header">
+			<a href="/">Some Name</a>
+		</div>
 		<article>
 			<div><p>Date: 2012-03-19
 Title: Structurer une application Web avec Express et Node.js

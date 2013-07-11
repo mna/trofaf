@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		
+		<div class="header">
+			<a href="/">Some Name</a>
+		</div>
 		<article>
 			<div><p>Date: 2012-03-12
 Title: npm shrinkwrap: Comment contrôler ses dépendances

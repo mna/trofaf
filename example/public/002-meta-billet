@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		
+		<div class="header">
+			<a href="/">Some Name</a>
+		</div>
 		<article>
 			<div><p>Date: 2012-02-29
 Title: Méta-billet: un mot sur le Calepin

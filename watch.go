@@ -105,14 +105,15 @@ func regeneratePosts() {
 }
 
 type TemplateData struct {
-	Post   *LongPost
-	Recent []*ShortPost
-	Prev   *ShortPost
-	Next   *ShortPost
+	SiteName string
+	Post     *LongPost
+	Recent   []*ShortPost
+	Prev     *ShortPost
+	Next     *ShortPost
 }
 
 func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
-	td := &TemplateData{Post: p, Recent: r}
+	td := &TemplateData{SiteName: SiteName, Post: p, Recent: r}
 
 	if i > 0 {
 		td.Prev = all[i-1].Short()
