@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="002-meta-billet">&lt;&lt; Méta-billet: un mot sur le Calepin!</a>
+					</li>
+					<li class="current">
+						<span>npm: la base essentielle pour débuter avec node.js</span>
+					</li>
+					<li class="next">
+						<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
 
 <p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>
@@ -112,12 +124,5 @@ jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
 <p>Dans un prochain article j&rsquo;aborderai les commandes davantage liées à une librairie spécifique, son fichier <code>package.json</code>, et les bonnes pratiques (toujours en évolution!) pour la gestion des dépendances d&rsquo;une application node.</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="002-meta-billet">&lt;&lt; Méta-billet: un mot sur le Calepin!</a>
-		</div>
-		<div class="pager">
-			<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances >></a>
-		</div>
 	</body>
 </html>

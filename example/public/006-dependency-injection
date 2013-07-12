@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="005-structurer-express">&lt;&lt; Structurer une application Web avec Express et Node.js</a>
+					</li>
+					<li class="current">
+						<span>Expérimentations sur l&#39;injection de dépendance avec node.js</span>
+					</li>
+					<li class="next">
+						<a href="007-implement-js">implement.js: typage fort et Javascript >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) permet de découpler les différentes composantes d&rsquo;une application pour en faciliter l&rsquo;entretien, la testabilité, circonscrire l&rsquo;impact des changements, mais aussi pour imposer une façon d&rsquo;aborder la création de l&rsquo;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&rsquo;API bien défini. Elle a comme effet secondaire, règle générale, une meilleure architecture.</p>
 
 <p>Dans les langages de programmation orientés-objet statiques, tels C# ou Java, le patron (<em>pattern</em>) d&rsquo;injection de dépendance prend la forme d&rsquo;une interface ou d&rsquo;une classe abstraite, d&rsquo;une (ou plusieurs) implémentation de cette interface, et d&rsquo;un <em>assembleur</em>, responsable de créer l&rsquo;instance concrète d&rsquo;une implémentation de l&rsquo;interface, et de l&rsquo;injecter dans un objet &ldquo;client&rdquo; de la dépendance. <a href="http://martinfowler.com/articles/injection.html">Martin Fowler a écrit un brillant article sur le sujet</a>, c&rsquo;est une lecture essentielle pour approfondir ce patron.</p>
@@ -75,12 +87,5 @@ module.exports = server;
 <p>C&rsquo;est ce qu&rsquo;il manque, à mon avis, aux solutions actuelles sous Javascript. Quelque chose pour valider que le contrat attendu par le &ldquo;client&rdquo; soit respecté par la dépendance fournie. J&rsquo;ai quelques idées sur le sujet, on verra si ça mûrira, gardez l&rsquo;oeil sur <a href="https://github.com/PuerkitoBio/express-boilerplate">le référentiel GitHub</a>, et si vous avez commentaires et suggestions, l&rsquo;espace ci-bas est là pour ça!</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="005-structurer-express">&lt;&lt; Structurer une application Web avec Express et Node.js</a>
-		</div>
-		<div class="pager">
-			<a href="007-implement-js">implement.js: typage fort et Javascript >></a>
-		</div>
 	</body>
 </html>

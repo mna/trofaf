@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="007-implement-js">&lt;&lt; implement.js: typage fort et Javascript</a>
+					</li>
+					<li class="current">
+						<span>Propriétés calculées avec Backbone</span>
+					</li>
+					<li class="next">
+						<a href="009-je-men-vais">Je suis venu te dire que je m&#39;en vais >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
 
 <h3>Pas encore une controverse Backbone vs Knockout&hellip;</h3>
@@ -69,12 +81,5 @@
 <p>J&rsquo;ai mis le code source dans ce <a href="https://gist.github.com/2371954">gist</a>, car le tout fait à peine 100 <a href="http://en.wikipedia.org/wiki/Source_lines_of_code">sloc</a>, il est probablement préférable de le copier et l&rsquo;insérer dans son modèle Backbone de base (et de le minifier avec son code maison) plutôt que de le distribuer comme une librairie indépendante. Et en plus, le code assume qu&rsquo;il hérite directement de Backbone.Model, alors que ce n&rsquo;est pas forcément le cas. Qui sait, peut-être qu&rsquo;un auteur de librairie Backbone de plus haut niveau sera intéressé à l&rsquo;intégrer dans son cadre de développement (<em>framework</em>).</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="007-implement-js">&lt;&lt; implement.js: typage fort et Javascript</a>
-		</div>
-		<div class="pager">
-			<a href="009-je-men-vais">Je suis venu te dire que je m&#39;en vais >></a>
-		</div>
 	</body>
 </html>

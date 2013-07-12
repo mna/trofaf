@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="006-dependency-injection">&lt;&lt; Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+					</li>
+					<li class="current">
+						<span>implement.js: typage fort et Javascript</span>
+					</li>
+					<li class="next">
+						<a href="008-backbone-computed-properties">Propriétés calculées avec Backbone >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
 
 <p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>
@@ -31,12 +43,5 @@
 <p>Les prochaines étapes sont assez simples, je vous invite à essayer la librairie, si vous croyez qu&rsquo;elle peut être utile dans vos projets. N&rsquo;hésitez pas à la faire partager avec vos collègues développeurs, et à <a href="https://github.com/PuerkitoBio/implement.js/issues">ouvrir un rapport d&rsquo;anomalie</a> au besoin. Encore mieux, si vous le pouvez, soumettez un correctif (un <em>pull request</em>). Je prévois ajouter la documentation de l&rsquo;API avec <a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> sous peu, et possiblement rendre la librairie disponible dans le fureteur.</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="006-dependency-injection">&lt;&lt; Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-		</div>
-		<div class="pager">
-			<a href="008-backbone-computed-properties">Propriétés calculées avec Backbone >></a>
-		</div>
 	</body>
 </html>

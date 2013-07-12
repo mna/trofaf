@@ -14,14 +14,21 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="009-je-men-vais">&lt;&lt; Je suis venu te dire que je m&#39;en vais</a>
+					</li>
+					<li class="current">
+						<span>Ce blogue a déménagé sur GitHub</span>
+					</li>
+					<li class="next">
+					</li>
+				</ul>
+			</nav>
 			<div><p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="009-je-men-vais">&lt;&lt; Je suis venu te dire que je m&#39;en vais</a>
-		</div>
 	</body>
 </html>

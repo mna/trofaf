@@ -17,14 +17,16 @@ html.no-js
 		div.header
 			a[href="/"] #{SiteName}
 
-		h1 #{Post.ShortPost.Author}
-
 		article
-			block content
+			nav
+				ul
+					li.prev
+						if Prev 
+							a[href=Prev.Slug] << #{Prev.Title}
+					li.current
+						span #{Post.ShortPost.Title}
+					li.next
+						if Next
+							a[href=Next.Slug] #{Next.Title} >>
 
-		if Prev 
-			div.pager 
-				a[href=Prev.Slug] << #{Prev.Title}
-		if Next 
-			div.pager
-				a[href=Next.Slug] #{Next.Title} >>
+			block content

@@ -14,8 +14,19 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="010-demenagement">&lt;&lt; Ce blogue a déménagé sur GitHub</a>
+					</li>
+					<li class="current">
+						<span>Propulsé par node.js</span>
+					</li>
+					<li class="next">
+					</li>
+				</ul>
+			</nav>
 			<div><p>Le développement d&rsquo;une application Web (d&rsquo;un <a href="http://fr.wikipedia.org/wiki/Logiciel_en_tant_que_service" title="Logiciel en tant que service">SaaS</a>, si vous préférez) est ponctué d&rsquo;une multitude de choix technologiques.
 Pour <a href="http://www.compterenduweb.com/">le compte rendu Web</a>, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&rsquo;a pourtant pas fait l&rsquo;objet
 d&rsquo;une réflexion, d&rsquo;une étude comparative. Loin s&rsquo;en faut. Il a plutôt été l&rsquo;élément déclencheur de tout le projet.</p>
@@ -83,9 +94,5 @@ port de node sur la plateforme Windows.</p>
 <p>C&rsquo;est donc sur cette base solide et hyper motivante que repose le <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Propulsé par node.js, à plus d&rsquo;un niveau!</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="010-demenagement">&lt;&lt; Ce blogue a déménagé sur GitHub</a>
-		</div>
 	</body>
 </html>

@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="004-npm-packages">&lt;&lt; npm shrinkwrap: Comment contrôler ses dépendances</a>
+					</li>
+					<li class="current">
+						<span>Structurer une application Web avec Express et Node.js</span>
+					</li>
+					<li class="next">
+						<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>** MISE À JOUR ** (22 mars 2012) : J&rsquo;ai mis un exemple (simpliste, mais fonctionnel) de la structure suggérée dans ce billet sur GitHub, <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a>.</p>
 
 <hr />
@@ -114,12 +126,5 @@ app.get('/', routes.index);
 <p>Est-ce que votre organisation du code ressemble à ça? Utilisez-vous quelque chose de radicalement différent? Faites-en part dans les commentaires!</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="004-npm-packages">&lt;&lt; npm shrinkwrap: Comment contrôler ses dépendances</a>
-		</div>
-		<div class="pager">
-			<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js >></a>
-		</div>
 	</body>
 </html>

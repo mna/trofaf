@@ -14,8 +14,20 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
-		<h1>Martin Angers</h1>
 		<article>
+			<nav>
+				<ul>
+					<li class="prev">
+						<a href="008-backbone-computed-properties">&lt;&lt; Propriétés calculées avec Backbone</a>
+					</li>
+					<li class="current">
+						<span>Je suis venu te dire que je m&#39;en vais</span>
+					</li>
+					<li class="next">
+						<a href="010-demenagement">Ce blogue a déménagé sur GitHub >></a>
+					</li>
+				</ul>
+			</nav>
 			<div><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
 
 <blockquote>
@@ -48,12 +60,5 @@
 <p>Quant au <em>design</em> du site, il sera peut-être minimaliste comme l&rsquo;était Calepin. Ou peut-être pas. Maintenant que je peux faire ce que je veux, je risque d&rsquo;expérimenter certains trucs, particulièrement avec le CSS. Et puis je n&rsquo;ai pas la notoriété d&rsquo;un <a href="http://dcurt.is/">Dustin Curtis</a>, possiblement que plus de tentacules sociales me seraient utiles. Tout ça reste à voir, mais en attendant le signal, c&rsquo;est encore ici, sur <a href="http://hypermegatop.calepin.co/">hypermegatop.calepin.co</a>, que ça se passe. 86&hellip; 85&hellip; 84 jours&hellip;</p>
 </div>
 		</article>
-		<div class="pager">
-			
-			<a href="008-backbone-computed-properties">&lt;&lt; Propriétés calculées avec Backbone</a>
-		</div>
-		<div class="pager">
-			<a href="010-demenagement">Ce blogue a déménagé sur GitHub >></a>
-		</div>
 	</body>
 </html>

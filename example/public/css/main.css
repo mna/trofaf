@@ -97,9 +97,22 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+	color: #444444;
+  background-color: #ffffff;
+}
 
 article {
 	padding: 0 10% 0 10%;
+}
+
+a {
+  color: #1e347b;
+  text-decoration: none;
+}
+a:hover {
+  color: #0f1a3e;
+  text-decoration: underline;
 }
 
 .header {
@@ -117,12 +130,92 @@ article {
 .pager, .pager:hover, .pager:active, .pager:visited, .pager:link {
 	color: blue;
 }
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 26px;
+  border-left: 5px solid #eeeeee;
+}
+blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 32.5px;
+}
+blockquote small {
+  display: block;
+  line-height: 26px;
+  color: #999999;
+}
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+code,
+pre {
+  padding: 0 3px 2px;
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 15px;
+  color: #333333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+code {
+  padding: 2px 4px;
+  color: #d14;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+pre {
+  display: block;
+  padding: 12.5px;
+  margin: 0 0 13px;
+  font-size: 14.8px;
+  line-height: 26px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+pre.prettyprint {
+  margin-bottom: 26px;
+}
+pre code {
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+}
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
 
+nav {
+	margin: 10px 0 10px 0;
+	border: 1px solid silver;
+	background-color: lightgrey;
+}
 
+nav ul li {
+	vertical-align: top;
+	margin-right: 3%;
+	display: inline-block;
+	width: 30%;
+}
 
-
-
-
+.current {
+	font-weight: bold;
+	text-align: center;
+}
+.next {
+	text-align: right;
+}
 
 
 
