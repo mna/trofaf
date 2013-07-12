@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title> Expérimentations sur l&#39;injection de dépendance avec node.js</title>
-		<meta name="description" content=" L&#39;injection de dépendance permet de découpler les différentes composantes d&#39;une application pour en faciliter l&#39;entretien, la testabilité, circonscrire l&#39;impact des changements, mais aussi pour imposer une façon d&#39;aborder la création de l&#39;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&#39;API bien défini." />
+		<title>Expérimentations sur l&#39;injection de dépendance avec node.js</title>
+		<meta name="description" content="L&#39;injection de dépendance permet de découpler les différentes composantes d&#39;une application pour en faciliter l&#39;entretien, la testabilité, circonscrire l&#39;impact des changements, mais aussi pour imposer une façon d&#39;aborder la création de l&#39;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&#39;API bien défini." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -14,6 +14,7 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
+		<h1>Martin Angers</h1>
 		<article>
 			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) permet de découpler les différentes composantes d&rsquo;une application pour en faciliter l&rsquo;entretien, la testabilité, circonscrire l&rsquo;impact des changements, mais aussi pour imposer une façon d&rsquo;aborder la création de l&rsquo;application en une aggrégation de pièces simples, à la responsabilité ciblée, et à l&rsquo;API bien défini. Elle a comme effet secondaire, règle générale, une meilleure architecture.</p>
 
@@ -76,10 +77,10 @@ module.exports = server;
 		</article>
 		<div class="pager">
 			
-			<a href="005-structurer-express">&lt;&lt;  Structurer une application Web avec Express et Node.js</a>
+			<a href="005-structurer-express">&lt;&lt; Structurer une application Web avec Express et Node.js</a>
 		</div>
 		<div class="pager">
-			<a href="007-implement-js"> implement.js: typage fort et Javascript >></a>
+			<a href="007-implement-js">implement.js: typage fort et Javascript >></a>
 		</div>
 	</body>
 </html>

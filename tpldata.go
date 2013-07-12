@@ -23,7 +23,6 @@ type TemplateData struct {
 
 func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
 	td := &TemplateData{SiteName: SiteName, Post: p, Recent: r}
-
 	if i > 0 {
 		td.Prev = all[i-1].Short()
 	}
@@ -73,7 +72,7 @@ func readFrontMatter(s *bufio.Scanner) map[string]string {
 				log.Println("POST ERROR invalid front matter line: ", l)
 				return nil
 			}
-			m[sections[0]] = sections[1]
+			m[sections[0]] = strings.Trim(sections[1], " ")
 		} else if l != "" {
 			// No front matter, quit
 			return nil
@@ -99,12 +98,20 @@ func newLongPost(fi os.FileInfo) *LongPost {
 	m := readFrontMatter(s)
 
 	slug := getSlug(fi.Name())
+	pubdt := fi.ModTime()
+	if dt, ok := m["Date"]; ok {
+		pubdt, err = time.Parse("2006-01-02", dt)
+		if err != nil {
+			log.Println("POST ERROR invalid date format: ", dt)
+			pubdt = fi.ModTime()
+		}
+	}
 	sp := &ShortPost{
 		slug,
 		m["Author"],
 		m["Title"],
 		m["Description"],
-		fi.ModTime(), // TODO : This is NOT the pub time...
+		pubdt,
 		fi.ModTime(),
 	}
 

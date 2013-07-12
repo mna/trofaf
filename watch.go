@@ -11,7 +11,7 @@ const (
 	// Sometimes many events can be triggered in succession for the same file
 	// (i.e. Create followed by Modify, etc.). No need to rush to generate
 	// the HTML, just wait for it to calm down before processing.
-	watchEventDelay = 30 * time.Second
+	watchEventDelay = 10 * time.Second
 )
 
 func startWatcher() *fsnotify.Watcher {
@@ -20,7 +20,13 @@ func startWatcher() *fsnotify.Watcher {
 		log.Fatal("FATAL ", err)
 	}
 	go watch(w)
+	// Watch the posts directory
 	if err = w.Watch(PostsDir); err != nil {
+		w.Close()
+		log.Fatal("FATAL ", err)
+	}
+	// Watch the templates directory
+	if err = w.Watch(TemplatesDir); err != nil {
 		w.Close()
 		log.Fatal("FATAL ", err)
 	}
@@ -36,13 +42,13 @@ func watch(w *fsnotify.Watcher) {
 	for {
 		select {
 		case ev := <-w.Event:
-			log.Print("watch event ", ev)
+			log.Println("watch event ", ev)
 			// Regenerate the files after the delay, reset the delay if an event is triggered
 			// in the meantime
 			delay = time.After(watchEventDelay)
 
 		case err := <-w.Error:
-			log.Print("WATCH ERROR ", err)
+			log.Println("WATCH ERROR ", err)
 
 		case <-delay:
 			log.Print("trigger regeneration of site")

@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title> npm shrinkwrap: Comment contrôler ses dépendances</title>
-		<meta name="description" content=" Utiliser une librairie existante permet d&#39;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&#39;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois." />
+		<title>npm shrinkwrap: Comment contrôler ses dépendances</title>
+		<meta name="description" content="Utiliser une librairie existante permet d&#39;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&#39;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -14,6 +14,7 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
+		<h1>Martin Angers</h1>
 		<article>
 			<div><p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
 
@@ -127,10 +128,10 @@ mime@1.2.5 ./node_modules/express/node_modules/connect/node_modules/mime current
 		</article>
 		<div class="pager">
 			
-			<a href="003-dependances">&lt;&lt;  npm: la base essentielle pour débuter avec node.js</a>
+			<a href="003-dependances">&lt;&lt; npm: la base essentielle pour débuter avec node.js</a>
 		</div>
 		<div class="pager">
-			<a href="005-structurer-express"> Structurer une application Web avec Express et Node.js >></a>
+			<a href="005-structurer-express">Structurer une application Web avec Express et Node.js >></a>
 		</div>
 	</body>
 </html>

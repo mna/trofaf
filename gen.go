@@ -16,6 +16,9 @@ const (
 	maxRecentPosts = 2
 )
 
+// TODO : All fatal errors should be non-stopping errors when generating the site. Allows
+// for corrections of the code, then re-triggering the generation.
+
 var (
 	postTpl   *template.Template
 	postTplNm = "post.amber"

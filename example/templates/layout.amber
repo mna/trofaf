@@ -17,6 +17,8 @@ html.no-js
 		div.header
 			a[href="/"] #{SiteName}
 
+		h1 #{Post.ShortPost.Author}
+
 		article
 			block content
 

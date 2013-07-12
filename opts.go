@@ -11,7 +11,8 @@ const (
 )
 
 type options struct {
-	Port int `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
+	Port  int  `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
+	NoGen bool `short:"G" long:"no-generation" description:"when set, the site is not automatically generated"`
 }
 
 var (

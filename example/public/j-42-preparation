@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title> Propulsé par node.js</title>
-		<meta name="description" content=" Le développement d&#39;une application Web est ponctué d&#39;une multitude de choix technologiques. Pour le compte rendu Web, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&#39;a pourtant pas fait l&#39;objet d&#39;une réflexion, d&#39;une étude comparative. Loin s&#39;en faut. Il a plutôt été l&#39;élément déclencheur de tout le projet." />
+		<title>Propulsé par node.js</title>
+		<meta name="description" content="Le développement d&#39;une application Web est ponctué d&#39;une multitude de choix technologiques. Pour le compte rendu Web, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&#39;a pourtant pas fait l&#39;objet d&#39;une réflexion, d&#39;une étude comparative. Loin s&#39;en faut. Il a plutôt été l&#39;élément déclencheur de tout le projet." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -14,6 +14,7 @@
 		<div class="header">
 			<a href="/">Some Name</a>
 		</div>
+		<h1>Martin Angers</h1>
 		<article>
 			<div><p>Le développement d&rsquo;une application Web (d&rsquo;un <a href="http://fr.wikipedia.org/wiki/Logiciel_en_tant_que_service" title="Logiciel en tant que service">SaaS</a>, si vous préférez) est ponctué d&rsquo;une multitude de choix technologiques.
 Pour <a href="http://www.compterenduweb.com/">le compte rendu Web</a>, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&rsquo;a pourtant pas fait l&rsquo;objet
@@ -84,7 +85,7 @@ port de node sur la plateforme Windows.</p>
 		</article>
 		<div class="pager">
 			
-			<a href="010-demenagement">&lt;&lt;  Ce blogue a déménagé sur GitHub</a>
+			<a href="010-demenagement">&lt;&lt; Ce blogue a déménagé sur GitHub</a>
 		</div>
 	</body>
 </html>
