@@ -67,7 +67,7 @@ func generateSite() {
 		log.Fatal("FATAL ", err)
 	}
 	for _, fi := range fis {
-		if !fi.IsDir() {
+		if !fi.IsDir() && fi.Name() != "favicon.ico" {
 			err = os.Remove(filepath.Join(PublicDir, fi.Name()))
 			if err != nil {
 				log.Println("DELETE ERROR ", err)
@@ -99,15 +99,6 @@ func generateSite() {
 		generateFile(td, i == 0)
 	}
 }
-
-// TODO : Should pass to the template:
-// Title : The first heading in the file, or the file name, or front matter?
-// Description : ?
-// ModTime
-// Parsed : The html-parsed markdown
-// Recent : A slice of n recent posts
-// Next : The next (more recent) post
-// Previous : The previous (older) post
 
 func generateFile(td *TemplateData, idx bool) {
 	var w io.Writer

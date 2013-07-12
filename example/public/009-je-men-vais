@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>009-je-men-vais</title>
-		<meta name="description" content="description" />
+		<title> Je suis venu te dire que je m&#39;en vais</title>
+		<meta name="description" content=" Ou plutôt, &#34;je suis venu te dire qu&#39;on m&#39;évince&#34;, mais ça &#34;punch&#34; moins... En effet, mon coup de foudre pour le blogiciel Calepin aura finalement été son baiser de la mort. Sur Twitter la semaine dernière, via le canal officiel du site, on apprenait que c&#39;était la fin des haricots." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -15,13 +15,7 @@
 			<a href="/">Some Name</a>
 		</div>
 		<article>
-			<div><p>Date: 2012-04-23
-Title: Je suis venu te dire que je m&rsquo;en vais
-Author: Martin Angers
-Category: technologie
-Abstract: Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça &ldquo;punch&rdquo; moins&hellip; En effet, mon coup de foudre pour le blogiciel Calepin aura finalement été son baiser de la mort. Sur Twitter la semaine dernière, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots.</p>
-
-<p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
+			<div><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
 
 <blockquote>
 <p>Announcement: Calepin is closing in 90 days. Consider moving to @scriptogram Thanks for the ride. Sorry I couldn&rsquo;t maintain it.</p>
@@ -55,10 +49,10 @@ Abstract: Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rd
 		</article>
 		<div class="pager">
 			
-			<a href="008-backbone-computed-properties">&lt;&lt; 008-backbone-computed-properties</a>
+			<a href="008-backbone-computed-properties">&lt;&lt;  Propriétés calculées avec Backbone</a>
 		</div>
 		<div class="pager">
-			<a href="010-demenagement">010-demenagement >></a>
+			<a href="010-demenagement"> Ce blogue a déménagé sur GitHub >></a>
 		</div>
 	</body>
 </html>

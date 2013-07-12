@@ -1,8 +1,10 @@
+---
 Date: 2012-04-23
 Title: Je suis venu te dire que je m'en vais
 Author: Martin Angers
 Category: technologie
-Abstract: Ou plutôt, "je suis venu te dire qu'on m'évince", mais ça "punch" moins... En effet, mon coup de foudre pour le blogiciel Calepin aura finalement été son baiser de la mort. Sur Twitter la semaine dernière, via le canal officiel du site, on apprenait que c'était la fin des haricots.
+Description: Ou plutôt, "je suis venu te dire qu'on m'évince", mais ça "punch" moins... En effet, mon coup de foudre pour le blogiciel Calepin aura finalement été son baiser de la mort. Sur Twitter la semaine dernière, via le canal officiel du site, on apprenait que c'était la fin des haricots.
+---
 
 Ou plutôt, "je suis venu te dire qu'on m'évince", mais ça *punch* moins... En effet, mon [coup de foudre][kod] pour le blogiciel Calepin aura finalement été son baiser de la mort. [Sur Twitter la semaine dernière][tw1], via le canal officiel du site, on apprenait que c'était la fin des haricots:
 

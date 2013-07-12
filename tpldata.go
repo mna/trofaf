@@ -1,7 +1,8 @@
 package main
 
 import (
-	"io/ioutil"
+	"bufio"
+	"bytes"
 	"log"
 	"os"
 	"path/filepath"
@@ -52,27 +53,71 @@ func getSlug(fnm string) string {
 	return rxSlug.ReplaceAllString(strings.Replace(fnm, filepath.Ext(fnm), "", 1), "-")
 }
 
+func readFrontMatter(s *bufio.Scanner) map[string]string {
+	m := make(map[string]string)
+	infm := false
+	for s.Scan() {
+		l := strings.Trim(s.Text(), " ")
+		if l == "---" { // The front matter is delimited by 3 dashes
+			if infm {
+				// This signals the end of the front matter
+				return m
+			} else {
+				// This is the start of the front matter
+				infm = true
+			}
+		} else if infm {
+			sections := strings.SplitN(l, ":", 2)
+			if len(sections) != 2 {
+				// Invalid front matter line
+				log.Println("POST ERROR invalid front matter line: ", l)
+				return nil
+			}
+			m[sections[0]] = sections[1]
+		} else if l != "" {
+			// No front matter, quit
+			return nil
+		}
+	}
+	if infm {
+		log.Println("POST ERROR unclosed front matter")
+	} else if err := s.Err(); err != nil {
+		log.Println("POST ERROR ", err)
+	}
+	return nil
+}
+
 func newLongPost(fi os.FileInfo) *LongPost {
+	log.Println("processing post ", fi.Name())
+	f, err := os.Open(filepath.Join(PostsDir, fi.Name()))
+	if err != nil {
+		log.Println("POST ERROR ", err)
+		return nil
+	}
+	defer f.Close()
+	s := bufio.NewScanner(f)
+	m := readFrontMatter(s)
+
 	slug := getSlug(fi.Name())
 	sp := &ShortPost{
 		slug,
-		"author",      // TODO : Complete...
-		slug,          // TODO : Read first heading, or front matter
-		"description", // TODO : Read front matter
-		fi.ModTime(),  // TODO : This is NOT the pub time...
+		m["Author"],
+		m["Title"],
+		m["Description"],
+		fi.ModTime(), // TODO : This is NOT the pub time...
 		fi.ModTime(),
 	}
 
-	f, err := os.Open(filepath.Join(PostsDir, fi.Name()))
-	if err != nil {
-		log.Fatal("FATAL ", err)
+	// Read rest of file
+	buf := bytes.NewBuffer(nil)
+	for s.Scan() {
+		buf.WriteString(s.Text() + "\n")
 	}
-	defer f.Close()
-	b, err := ioutil.ReadAll(f)
-	if err != nil {
-		log.Fatal("FATAL ", err)
+	if err = s.Err(); err != nil {
+		log.Println("POST ERROR ", err)
+		return nil
 	}
-	res := blackfriday.MarkdownCommon(b)
+	res := blackfriday.MarkdownCommon(buf.Bytes())
 	lp := &LongPost{
 		sp,
 		string(res),

@@ -1,8 +1,10 @@
+---
 Date: 2012-04-13
 Title: Propriétés calculées avec Backbone
 Author: Martin Angers
 Category: technologie
-Abstract: La beauté de l'univers du code libre est que lorsqu'il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l'ajouter. Voici ma petite histoire des propriétés calculées avec Backbone.
+Description: La beauté de l'univers du code libre est que lorsqu'il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l'ajouter. Voici ma petite histoire des propriétés calculées avec Backbone.
+---
 
 Je travaille actuellement à temps plein sur mon application-en-devenir de [Compte Rendu Web][crw]. Cette immersion totale en Javascript, [node.js][node] et [Backbone][bb] est très intéressante. La beauté de l'univers du code libre dans lequel baignent ces technologies est que lorsqu'il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l'ajouter. Voici ma petite histoire des propriétés calculées (*computed properties*) avec Backbone.
 

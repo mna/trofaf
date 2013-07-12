@@ -1,8 +1,10 @@
+---
 Date: 2012-04-02
 Title: implement.js: typage fort et Javascript
 Author: Martin Angers
 Category: technologie
-Abstract: L'injection de dépendance avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l'instance reçue seront celles attendues.
+Description: L'injection de dépendance avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l'instance reçue seront celles attendues.
+---
 
 L'injection de dépendance (*dependency injection*) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l'instance reçue seront celles attendues. Dans les langages statiques, l'injection est généralement basée sur une interface, qui assure au module "client" la disponibilité d'un ensemble de fonctionnalités. Le contrat imposé par l'interface est assurément respecté. Dans un langage dynamique comme Javascript, il n'y a rien de tel.
 

@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>007-implement-js</title>
-		<meta name="description" content="description" />
+		<title> implement.js: typage fort et Javascript</title>
+		<meta name="description" content=" L&#39;injection de dépendance avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&#39;instance reçue seront celles attendues." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -15,13 +15,7 @@
 			<a href="/">Some Name</a>
 		</div>
 		<article>
-			<div><p>Date: 2012-04-02
-Title: implement.js: typage fort et Javascript
-Author: Martin Angers
-Category: technologie
-Abstract: L&rsquo;injection de dépendance avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues.</p>
-
-<p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
+			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
 
 <p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>
 
@@ -38,10 +32,10 @@ Abstract: L&rsquo;injection de dépendance avec Javascript a comme conséquence 
 		</article>
 		<div class="pager">
 			
-			<a href="006-dependency-injection">&lt;&lt; 006-dependency-injection</a>
+			<a href="006-dependency-injection">&lt;&lt;  Expérimentations sur l&#39;injection de dépendance avec node.js</a>
 		</div>
 		<div class="pager">
-			<a href="008-backbone-computed-properties">008-backbone-computed-properties >></a>
+			<a href="008-backbone-computed-properties"> Propriétés calculées avec Backbone >></a>
 		</div>
 	</body>
 </html>

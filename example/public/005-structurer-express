@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>005-structurer-express</title>
-		<meta name="description" content="description" />
+		<title> Structurer une application Web avec Express et Node.js</title>
+		<meta name="description" content=" La façon d&#39;organiser son code, en divers répertoires et fichiers, est en bonne partie une question de préférence personnelle. Le cadre d&#39;application Web Express n&#39;impose aucune structure particulière, laissant le développeur totalement libre d&#39;arranger le tout selon son inspiration du moment. Cette liberté peut parfois donner le vertige et provoquer un effet pervers: le syndrome de la page blanche." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -15,13 +15,7 @@
 			<a href="/">Some Name</a>
 		</div>
 		<article>
-			<div><p>Date: 2012-03-19
-Title: Structurer une application Web avec Express et Node.js
-Author: Martin Angers
-Category: technologie
-Abstract: La façon d&rsquo;organiser son code, en divers répertoires et fichiers, est en bonne partie une question de préférence personnelle. Le cadre d&rsquo;application Web Express n&rsquo;impose aucune structure particulière, laissant le développeur totalement libre d&rsquo;arranger le tout selon son inspiration du moment. Cette liberté peut parfois donner le vertige et provoquer un effet pervers: le syndrome de la page blanche.</p>
-
-<p>** MISE À JOUR ** (22 mars 2012) : J&rsquo;ai mis un exemple (simpliste, mais fonctionnel) de la structure suggérée dans ce billet sur GitHub, <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a>.</p>
+			<div><p>** MISE À JOUR ** (22 mars 2012) : J&rsquo;ai mis un exemple (simpliste, mais fonctionnel) de la structure suggérée dans ce billet sur GitHub, <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a>.</p>
 
 <hr />
 
@@ -121,10 +115,10 @@ app.get('/', routes.index);
 		</article>
 		<div class="pager">
 			
-			<a href="004-npm-packages">&lt;&lt; 004-npm-packages</a>
+			<a href="004-npm-packages">&lt;&lt;  npm shrinkwrap: Comment contrôler ses dépendances</a>
 		</div>
 		<div class="pager">
-			<a href="006-dependency-injection">006-dependency-injection >></a>
+			<a href="006-dependency-injection"> Expérimentations sur l&#39;injection de dépendance avec node.js >></a>
 		</div>
 	</body>
 </html>

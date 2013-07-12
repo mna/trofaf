@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>010-demenagement</title>
-		<meta name="description" content="description" />
+		<title> Ce blogue a déménagé sur GitHub</title>
+		<meta name="description" content=" Suite à l&#39;annonce de la fermeture de Calepin.co, j&#39;ai déménagé ce blogue sur http://hypermegatop.github.com. Veuillez mettre à jour vos favoris!" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -15,18 +15,12 @@
 			<a href="/">Some Name</a>
 		</div>
 		<article>
-			<div><p>Date: 2012-04-30
-Title: Ce blogue a déménagé sur GitHub
-Author: Martin Angers
-Category: technologie
-Abstract: Suite à l&rsquo;annonce de la fermeture de Calepin.co, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
-
-<p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
+			<div><p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
 </div>
 		</article>
 		<div class="pager">
 			
-			<a href="009-je-men-vais">&lt;&lt; 009-je-men-vais</a>
+			<a href="009-je-men-vais">&lt;&lt;  Je suis venu te dire que je m&#39;en vais</a>
 		</div>
 	</body>
 </html>

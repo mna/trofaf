@@ -26,7 +26,7 @@ func init() {
 	if err != nil {
 		log.Fatal("FATAL ", err)
 	}
-	PublicDir = filepath.Join(pwd, "public/")
-	PostsDir = filepath.Join(pwd, "posts/")
-	TemplatesDir = filepath.Join(pwd, "templates/")
+	PublicDir = filepath.Join(pwd, "public")
+	PostsDir = filepath.Join(pwd, "posts")
+	TemplatesDir = filepath.Join(pwd, "templates")
 }

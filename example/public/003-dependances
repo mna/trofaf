@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>003-dependances</title>
-		<meta name="description" content="description" />
+		<title> npm: la base essentielle pour débuter avec node.js</title>
+		<meta name="description" content=" La plateforme node.js est volontairement limitée, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions de sa communauté pour enrichir le noyau et repousser les limites du possible. Avec près de 8000 librairies à ce jour, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&#39;est en bonne partie grâce au gestionnaire de librairies npm." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
@@ -15,13 +15,7 @@
 			<a href="/">Some Name</a>
 		</div>
 		<article>
-			<div><p>Date: 2012-03-05
-Title: npm: la base essentielle pour débuter avec node.js
-Author: Martin Angers
-Category: technologie
-Abstract: La plateforme node.js est volontairement limitée, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions de sa communauté pour enrichir le noyau et repousser les limites du possible. Avec près de 8000 librairies à ce jour, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce au gestionnaire de librairies npm.</p>
-
-<p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
+			<div><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
 
 <p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>
 
@@ -119,10 +113,10 @@ jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
 		</article>
 		<div class="pager">
 			
-			<a href="002-meta-billet">&lt;&lt; 002-meta-billet</a>
+			<a href="002-meta-billet">&lt;&lt;  Méta-billet: un mot sur le Calepin</a>
 		</div>
 		<div class="pager">
-			<a href="004-npm-packages">004-npm-packages >></a>
+			<a href="004-npm-packages"> npm shrinkwrap: Comment contrôler ses dépendances >></a>
 		</div>
 	</body>
 </html>
