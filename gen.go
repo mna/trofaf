@@ -11,7 +11,6 @@ import (
 	"sort"
 
 	"github.com/eknkc/amber"
-	"github.com/krautchan/gbt/module/api/rss"
 )
 
 // TODO : All fatal errors should be non-stopping errors when generating the site. Allows
@@ -109,7 +108,7 @@ func generateSite() {
 }
 
 func generateRss(td *TemplateData) error {
-	r := rss.New(td.SiteName, "", Options.BaseURL)
+	r := NewRss(td.SiteName, "", Options.BaseURL)
 	base, err := url.Parse(Options.BaseURL)
 	if err != nil {
 		return err
@@ -119,7 +118,7 @@ func generateRss(td *TemplateData) error {
 		if err != nil {
 			return err
 		}
-		r.AddItem(p.Title, u.String(), p.Description, p.Author, "")
+		r.Channels[0].AppendItem(NewRssItem(p.Title, u.String(), p.Description, p.Author, "", p.PubTime))
 	}
 	return r.WriteToFile(filepath.Join(PublicDir, "rss"))
 }
