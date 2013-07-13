@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,10 +35,10 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
-</div>
-		</article>
+		<main>
+			<article><p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -51,28 +52,35 @@
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

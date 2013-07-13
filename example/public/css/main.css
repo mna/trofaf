@@ -231,8 +231,8 @@ footer {
 footer ul {
 		padding: 0;
 		margin: 0;
-    list-style: none;
-    list-style-image: none;
+    list-style: bullet;
+		text-align: left;
 }
 footer [class^="icon-"] {
 	font-size: 400%;
@@ -242,7 +242,15 @@ footer .middle {
 	clear: both;
 	width: 100%;
 }
-	
+
+small {
+	font-size: 80%;
+}
+.copyright {
+	text-align: right;
+	margin: 10px 0 10px 0;
+	color: #5C595A;
+}
 
 
 /* ==========================================================================
@@ -367,7 +375,7 @@ footer .middle {
 		padding: 10px 15% 10px 15%;
 		font-size: 160%;
 	}
-	.current {
+	.middle {
 		font-size: 120%;
 	}
 	footer .middle {
@@ -392,7 +400,7 @@ footer .middle {
 		padding: 10px 20% 10px 20%;
 		font-size: 180%;
 	}
-	.current {
+	.middle {
 		font-size: 140%;
 	}
 }

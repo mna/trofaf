@@ -7,10 +7,12 @@ import (
 )
 
 type options struct {
-	Port     int    `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
-	NoGen    bool   `short:"G" long:"no-generation" description:"when set, the site is not automatically generated" default:false`
-	SiteName string `short:"n" long:"site-name" description:"the name of the site" default:"Site Name"`
-	TagLine  string `short:"t" long:"tag-line" description:"the site's tag line"`
+	Port             int    `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
+	NoGen            bool   `short:"G" long:"no-generation" description:"when set, the site is not automatically generated"`
+	SiteName         string `short:"n" long:"site-name" description:"the name of the site" default:"Site Name"`
+	TagLine          string `short:"t" long:"tag-line" description:"the site's tag line"`
+	RecentPostsCount int    `short:"r" long:"recent-posts" description:"the number of recent posts to send to the templates" default:"5"`
+	BaseURL          string `short:"b" long:"base-url" description:"the base URL of the web site" default:"http://localhost"`
 }
 
 var (

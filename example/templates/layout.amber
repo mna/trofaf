@@ -1,6 +1,6 @@
 !!! html
 // From HTML5 Boilerplate
-html.no-js
+html.no-js[lang="en"]
 	head
 		meta[charset="utf-8"]
 		meta[http-equiv="X-UA-Compatible"][content="IE=edge"]
@@ -11,6 +11,7 @@ html.no-js
 		link[rel="stylesheet"][href="/css/main.css"]
 		link[rel="stylesheet"][href="/css/fontello.css"]
 		link[href="http://fonts.googleapis.com/css?family=Telex"][rel="stylesheet"][type="text/css"]
+		link[rel="alternate"][type="application/rss+xml"][title="RSS"][href=RssURL]
 	body
 		<!--[if lt IE 7]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -38,7 +39,7 @@ html.no-js
 						span.huge •
 				div.clearfix
 
-		article
+		main
 			block content
 
 		footer
@@ -52,8 +53,15 @@ html.no-js
 				div.middle
 					if Recent
 						h3 Recent posts
-							ul
-								each $p in Recent
-									li
-										a[href=$p.Slug] #{$p.Title}
+						ul
+							each $p in Recent
+								li
+									a[href=$p.Slug] #{$p.Title}
 				div.clearfix
+			div.container.copyright
+				small
+					| built with 
+					a[href="https://github.com/PuerkitoBio/trofaf"] trofaf
+					| .
+				br
+				small © 2013 Martin Angers

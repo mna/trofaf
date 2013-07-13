@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,8 +35,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
+		<main>
+			<article lang="fr"><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
 
 <p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>
 
@@ -129,8 +130,8 @@ jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
 <p>Pour profiter des fonctionnalités non anonymes, il faut bien sûr se créer un compte utilisateur. C&rsquo;est tout simple, avec <code>npm adduser</code>, on peut choisir un nom d&rsquo;utilisateur, un mot de passe, et associer le tout à une adresse courriel. Ensuite il est possible d&rsquo;utiliser une des commandes méconnues qui a pourtant un potentiel intéressant pour découvrir les librairies de qualité: <code>npm star &lt;librairie&gt;</code>. C&rsquo;est l&rsquo;équivalent d&rsquo;un <em>j&rsquo;aime</em> de Facebook, et c&rsquo;est une information visible dans le registre. Elle gagnerait à être davantage utilisée et mieux exploitée, car plus l&rsquo;écosystème grossit, plus il devient difficile de discerner les librairies de calibre production, maintenues et codées de façon professionnelle, des projets de fin de semaine avec plus ou moins d&rsquo;avenir. C&rsquo;est une problématique <a href="http://mikkel.hoegh.org/blog/2011/12/20/trouble-in-node-dot-js-paradise-the-mess-that-is-npm/">qui commence à faire beaucoup jaser</a> dans la communauté, et une solution - ou du moins une amélioration - serait sur les planches à dessin du côté de l&rsquo;équipe de npm.</p>
 
 <p>Dans un prochain article j&rsquo;aborderai les commandes davantage liées à une librairie spécifique, son fichier <code>package.json</code>, et les bonnes pratiques (toujours en évolution!) pour la gestion des dépendances d&rsquo;une application node.</p>
-</div>
-		</article>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -144,28 +145,35 @@ jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

@@ -1,4 +1,9 @@
 extends layout
 
 block content
-	div #{unescaped(Post.Content)}
+	if Post.ShortPost.Lang
+		article[lang=Post.ShortPost.Lang]
+			#{unescaped(Post.Content)}
+	else
+		article
+			#{unescaped(Post.Content)}

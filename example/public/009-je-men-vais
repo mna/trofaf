@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,8 +35,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
+		<main>
+			<article><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
 
 <blockquote>
 <p>Announcement: Calepin is closing in 90 days. Consider moving to @scriptogram Thanks for the ride. Sorry I couldn&rsquo;t maintain it.</p>
@@ -65,8 +66,8 @@
 <p>Comme c&rsquo;est souvent le cas avec GitHub, créer son blogue est d&rsquo;une simplicité remarquable. Il s&rsquo;agit de créer un référentiel (<em>repository</em>) portant le nom &ldquo;<em>pseudo-github</em>.github.com&rdquo;, et le contenu sera disponible à l&rsquo;adresse http://<em>pseudo-github</em>.github.com/. Ça fonctionne aussi pour les organisations, et comme je voulais garder le nom hypermégatop (alors que mon pseudo GitHub est <a href="https://github.com/PuerkitoBio">PuerkitoBio</a>) je me suis créé une organisation de ce nom et j&rsquo;ai commencé à mettre en place mon blogue. N&rsquo;allez <a href="http://hypermegatop.github.com/">surtout pas le voir maintenant</a>, il n&rsquo;est pas prêt et bougera régulièrement d&rsquo;ici à ce que je déménage formellement.</p>
 
 <p>Quant au <em>design</em> du site, il sera peut-être minimaliste comme l&rsquo;était Calepin. Ou peut-être pas. Maintenant que je peux faire ce que je veux, je risque d&rsquo;expérimenter certains trucs, particulièrement avec le CSS. Et puis je n&rsquo;ai pas la notoriété d&rsquo;un <a href="http://dcurt.is/">Dustin Curtis</a>, possiblement que plus de tentacules sociales me seraient utiles. Tout ça reste à voir, mais en attendant le signal, c&rsquo;est encore ici, sur <a href="http://hypermegatop.calepin.co/">hypermegatop.calepin.co</a>, que ça se passe. 86&hellip; 85&hellip; 84 jours&hellip;</p>
-</div>
-		</article>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -80,28 +81,35 @@
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

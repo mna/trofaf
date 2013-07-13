@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,8 +35,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
+		<main>
+			<article><p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
 
 <h3>Pas encore une controverse Backbone vs Knockout&hellip;</h3>
 
@@ -86,8 +87,8 @@
 <h3>Un gist pour le moment</h3>
 
 <p>J&rsquo;ai mis le code source dans ce <a href="https://gist.github.com/2371954">gist</a>, car le tout fait à peine 100 <a href="http://en.wikipedia.org/wiki/Source_lines_of_code">sloc</a>, il est probablement préférable de le copier et l&rsquo;insérer dans son modèle Backbone de base (et de le minifier avec son code maison) plutôt que de le distribuer comme une librairie indépendante. Et en plus, le code assume qu&rsquo;il hérite directement de Backbone.Model, alors que ce n&rsquo;est pas forcément le cas. Qui sait, peut-être qu&rsquo;un auteur de librairie Backbone de plus haut niveau sera intéressé à l&rsquo;intégrer dans son cadre de développement (<em>framework</em>).</p>
-</div>
-		</article>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -101,28 +102,35 @@
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

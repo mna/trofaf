@@ -5,23 +5,23 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"os"
 	"path/filepath"
 	"sort"
 
 	"github.com/eknkc/amber"
-)
-
-const (
-	maxRecentPosts = 5
+	"github.com/krautchan/gbt/module/api/rss"
 )
 
 // TODO : All fatal errors should be non-stopping errors when generating the site. Allows
 // for corrections of the code, then re-triggering the generation.
+// TODO : Check for rss template, if present generate RSS feed
 
 var (
 	postTpl   *template.Template
 	postTplNm = "post.amber"
+	rssTplNm  = "rss.amber"
 )
 
 type sortableFileInfo []os.FileInfo
@@ -87,13 +87,13 @@ func generateSite() {
 	sfi = FilterDir(sfi)
 	sort.Reverse(sfi)
 
-	recent := make([]*ShortPost, maxRecentPosts)
+	recent := make([]*ShortPost, Options.RecentPostsCount)
 	all := make([]*LongPost, len(sfi))
 	// First pass to get the recent posts (and others) so that
 	// they can be passed to all posts.
 	for i, fi := range sfi {
 		all[i] = newLongPost(fi)
-		if i < maxRecentPosts {
+		if i < Options.RecentPostsCount {
 			recent[i] = all[i].Short()
 		}
 	}
@@ -102,6 +102,26 @@ func generateSite() {
 		td := newTemplateData(p, i, recent, all)
 		generateFile(td, i == 0)
 	}
+	td := newTemplateData(nil, 0, recent, nil)
+	if err := generateRss(td); err != nil {
+		log.Fatal("FATAL ", err)
+	}
+}
+
+func generateRss(td *TemplateData) error {
+	r := rss.New(td.SiteName, "", Options.BaseURL)
+	base, err := url.Parse(Options.BaseURL)
+	if err != nil {
+		return err
+	}
+	for _, p := range td.Recent {
+		u, err := base.Parse(p.Slug)
+		if err != nil {
+			return err
+		}
+		r.AddItem(p.Title, u.String(), p.Description, p.Author, "")
+	}
+	return r.WriteToFile(filepath.Join(PublicDir, "rss"))
 }
 
 func generateFile(td *TemplateData, idx bool) {

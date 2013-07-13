@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,8 +35,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
+		<main>
+			<article><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
 
 <p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>
 
@@ -48,8 +49,8 @@
 <h3>Essayez et participez!</h3>
 
 <p>Les prochaines étapes sont assez simples, je vous invite à essayer la librairie, si vous croyez qu&rsquo;elle peut être utile dans vos projets. N&rsquo;hésitez pas à la faire partager avec vos collègues développeurs, et à <a href="https://github.com/PuerkitoBio/implement.js/issues">ouvrir un rapport d&rsquo;anomalie</a> au besoin. Encore mieux, si vous le pouvez, soumettez un correctif (un <em>pull request</em>). Je prévois ajouter la documentation de l&rsquo;API avec <a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> sous peu, et possiblement rendre la librairie disponible dans le fureteur.</p>
-</div>
-		</article>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -63,28 +64,35 @@
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

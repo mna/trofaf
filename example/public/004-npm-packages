@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- From HTML5 Boilerplate -->
-<html class="no-js">
+<html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,14 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Site Name</a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
@@ -34,8 +35,8 @@
 				<div class="clearfix"></div>
 			</div>
 		</nav>
-		<article>
-			<div><p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
+		<main>
+			<article><p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
 
 <blockquote>
 <p>&ldquo;A dependency upon a package is a dependency upon everything within the package. When a package changes, and its release number is bumped, all clients of that package must verify that they work with the new package - even if nothing they used within the package actually changed.&rdquo;<br />
@@ -143,8 +144,8 @@ mime@1.2.5 ./node_modules/express/node_modules/connect/node_modules/mime current
 <h3>Brèche de sécurité dans le registre</h3>
 
 <p>Un mot en terminant sur le <a href="http://search.npmjs.org/">registre</a>, je mentionnais dans mon <a href="http://hypermegatop.calepin.co/npm-la-base-essentielle-pour-debuter-avec-nodejs.html">dernier article sur npm</a> qu&rsquo;il était nécessaire de se créer un compte pour utiliser certaines commandes. Et bien une brèche de sécurité a été découverte (et corrigée). Un courriel a été envoyé par Isaac à tous ceux qui avaient fourni une adresse valide, mais je sais qu&rsquo;il a eu des problèmes avec GMail et certains n&rsquo;ont pas reçu l&rsquo;information, donc si c&rsquo;est votre cas, assurez-vous de consulter ce <a href="https://gist.github.com/2001456">gist</a> qui reprend le contenu du courriel et les étapes à suivre pour sécuriser votre compte.</p>
-</div>
-		</article>
+</article>
+		</main>
 		<footer>
 			<div class="container">
 				<div class="left">
@@ -158,28 +159,35 @@ mime@1.2.5 ./node_modules/express/node_modules/connect/node_modules/mime current
 					</a>
 				</div>
 				<div class="middle">
-					<h3>
-						Recent posts
-						<ul>
-							<li>
-								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
-							</li>
-							<li>
-								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
-							</li>
-							<li>
-								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
-							</li>
-							<li>
-								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
-							</li>
-							<li>
-								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-							</li>
-						</ul>
-					</h3>
+					<h3>Recent posts</h3>
+					<ul>
+						<li>
+							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+						</li>
+						<li>
+							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+						</li>
+						<li>
+							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+						</li>
+						<li>
+							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+						</li>
+						<li>
+							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+						</li>
+					</ul>
 				</div>
 				<div class="clearfix"></div>
+			</div>
+			<div class="container copyright">
+				<small>
+					built with 
+					<a href="https://github.com/PuerkitoBio/trofaf">trofaf</a>
+					.
+				</small>
+				<br />
+				<small>© 2013 Martin Angers</small>
 			</div>
 		</footer>
 	</body>

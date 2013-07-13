@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"log"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -16,6 +17,7 @@ import (
 type TemplateData struct {
 	SiteName string
 	TagLine  string
+	RssURL   string
 	Post     *LongPost
 	Recent   []*ShortPost
 	Prev     *ShortPost
@@ -23,9 +25,18 @@ type TemplateData struct {
 }
 
 func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
+	b, err := url.Parse(Options.BaseURL)
+	if err != nil {
+		panic(err) // TODO : Manage errors
+	}
+	u, err := b.Parse("/rss")
+	if err != nil {
+		panic(err)
+	}
 	td := &TemplateData{
 		SiteName: Options.SiteName,
 		TagLine:  Options.TagLine,
+		RssURL:   u.String(),
 		Post:     p,
 		Recent:   r,
 	}
@@ -43,6 +54,7 @@ type ShortPost struct {
 	Author      string
 	Title       string
 	Description string
+	Lang        string
 	PubTime     time.Time
 	ModTime     time.Time
 }
@@ -117,6 +129,7 @@ func newLongPost(fi os.FileInfo) *LongPost {
 		m["Author"],
 		m["Title"],
 		m["Description"],
+		m["Lang"],
 		pubdt,
 		fi.ModTime(),
 	}
