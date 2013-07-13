@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="003-dependances" title="npm: la base essentielle pour débuter avec node.js">«</a>
+				</div>
+				<div class="current">
+					<span>npm shrinkwrap: Comment contrôler ses dépendances</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="005-structurer-express" title="Structurer une application Web avec Express et Node.js">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="003-dependances">&lt;&lt; npm: la base essentielle pour débuter avec node.js</a>
-					</li>
-					<li class="current">
-						<span>npm shrinkwrap: Comment contrôler ses dépendances</span>
-					</li>
-					<li class="next">
-						<a href="005-structurer-express">Structurer une application Web avec Express et Node.js >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
 
 <blockquote>

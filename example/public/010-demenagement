@@ -8,28 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="009-je-men-vais" title="Je suis venu te dire que je m&#39;en vais">«</a>
+				</div>
+				<div class="current">
+					<span>Ce blogue a déménagé sur GitHub</span>
+				</div>
+				<div class="next">
+					<span class="huge">•</span>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="009-je-men-vais">&lt;&lt; Je suis venu te dire que je m&#39;en vais</a>
-					</li>
-					<li class="current">
-						<span>Ce blogue a déménagé sur GitHub</span>
-					</li>
-					<li class="next">
-					</li>
-				</ul>
-			</nav>
 			<div><p>Suite à l&rsquo;annonce de la <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">fermeture de Calepin.co</a>, j&rsquo;ai déménagé ce blogue sur <a href="http://hypermegatop.github.com/">http://hypermegatop.github.com</a>. Veuillez mettre à jour vos favoris!</p>
 </div>
 		</article>

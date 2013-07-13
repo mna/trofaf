@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="004-npm-packages" title="npm shrinkwrap: Comment contrôler ses dépendances">«</a>
+				</div>
+				<div class="current">
+					<span>Structurer une application Web avec Express et Node.js</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="006-dependency-injection" title="Expérimentations sur l&#39;injection de dépendance avec node.js">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="004-npm-packages">&lt;&lt; npm shrinkwrap: Comment contrôler ses dépendances</a>
-					</li>
-					<li class="current">
-						<span>Structurer une application Web avec Express et Node.js</span>
-					</li>
-					<li class="next">
-						<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>** MISE À JOUR ** (22 mars 2012) : J&rsquo;ai mis un exemple (simpliste, mais fonctionnel) de la structure suggérée dans ce billet sur GitHub, <a href="https://github.com/PuerkitoBio/express-boilerplate">express-boilerplate</a>.</p>
 
 <hr />

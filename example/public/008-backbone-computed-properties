@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="007-implement-js" title="implement.js: typage fort et Javascript">«</a>
+				</div>
+				<div class="current">
+					<span>Propriétés calculées avec Backbone</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="009-je-men-vais" title="Je suis venu te dire que je m&#39;en vais">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="007-implement-js">&lt;&lt; implement.js: typage fort et Javascript</a>
-					</li>
-					<li class="current">
-						<span>Propriétés calculées avec Backbone</span>
-					</li>
-					<li class="next">
-						<a href="009-je-men-vais">Je suis venu te dire que je m&#39;en vais >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
 
 <h3>Pas encore une controverse Backbone vs Knockout&hellip;</h3>

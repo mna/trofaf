@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="002-meta-billet" title="Méta-billet: un mot sur le Calepin!">«</a>
+				</div>
+				<div class="current">
+					<span>npm: la base essentielle pour débuter avec node.js</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="004-npm-packages" title="npm shrinkwrap: Comment contrôler ses dépendances">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="002-meta-billet">&lt;&lt; Méta-billet: un mot sur le Calepin!</a>
-					</li>
-					<li class="current">
-						<span>npm: la base essentielle pour débuter avec node.js</span>
-					</li>
-					<li class="next">
-						<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
 
 <p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>

@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="006-dependency-injection" title="Expérimentations sur l&#39;injection de dépendance avec node.js">«</a>
+				</div>
+				<div class="current">
+					<span>implement.js: typage fort et Javascript</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="008-backbone-computed-properties" title="Propriétés calculées avec Backbone">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="006-dependency-injection">&lt;&lt; Expérimentations sur l&#39;injection de dépendance avec node.js</a>
-					</li>
-					<li class="current">
-						<span>implement.js: typage fort et Javascript</span>
-					</li>
-					<li class="next">
-						<a href="008-backbone-computed-properties">Propriétés calculées avec Backbone >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
 
 <p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>

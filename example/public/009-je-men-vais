@@ -8,29 +8,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
-			<h1>
-				<a href="/">zero value</a>
-				<span>A wysiwyg hypertext cybernet</span>
-			</h1>
+			<div class="title">
+				<a href="/">Ø value</a>
+				<br />
+				<small>a wysiwyg hypertext cybersite</small>
+			</div>
 		</div>
+		<nav>
+			<div class="container">
+				<div class="prev">
+					<a class="huge" href="008-backbone-computed-properties" title="Propriétés calculées avec Backbone">«</a>
+				</div>
+				<div class="current">
+					<span>Je suis venu te dire que je m&#39;en vais</span>
+				</div>
+				<div class="next">
+					<a class="huge" href="010-demenagement" title="Ce blogue a déménagé sur GitHub">»</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</nav>
 		<article>
-			<nav>
-				<ul>
-					<li class="prev">
-						<a href="008-backbone-computed-properties">&lt;&lt; Propriétés calculées avec Backbone</a>
-					</li>
-					<li class="current">
-						<span>Je suis venu te dire que je m&#39;en vais</span>
-					</li>
-					<li class="next">
-						<a href="010-demenagement">Ce blogue a déménagé sur GitHub >></a>
-					</li>
-				</ul>
-			</nav>
 			<div><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
 
 <blockquote>

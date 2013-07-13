@@ -19,7 +19,7 @@ textarea {
 }
 
 body {
-	font-family: 'Helvetica Neue', 'Sans Serif';
+	font-family: 'Telex', sans-serif;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -116,9 +116,9 @@ a:hover {
 }
 
 .header {
-	background-color: #000000;
+	background-color: #47e3ff;
 	padding: 10px 10% 10px 10%;
-	height: 100px;
+	font-size: 140%;
 }
 
 .header a, .header span {
@@ -196,38 +196,32 @@ pre code {
 }
 
 nav {
-	margin: 10px 0 10px 0;
-	padding: 5px 0 5px 0;
-	height: 100px;
-	background-color: silver;
+	padding: 10px 10% 10px 10%;
+	background-color: #44e383;
 }
 
-nav ul {
-	margin: 0;
-	padding: 0;
-	height: 100%;
+.container {
+	width: 100%;
 }
-nav ul li {
-	height: 100%;
-	padding: 0;
-	vertical-align: top;
-	margin-left: 1%;
-	margin-right: 1%;
-	display: inline-block;
-	width: 31%;
-	background-color: #5ba37f;
+.prev, .next, .current {
+	float: left;
 }
-
+.prev, .next {
+	width: 25%;
+}
 .current {
-	font-weight: bold;
+	width: 50%;
 	text-align: center;
 }
 .next {
 	text-align: right;
 }
-
-
-
+.huge {
+	font-size: 300%;
+}
+a.huge {
+	text-decoration:none;
+}
 
 
 
@@ -340,8 +334,30 @@ nav ul li {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+@media only screen and (min-width: 40em) {
+  /* Style adjustments for viewports that meet the condition */
+	article {
+		padding: 0 15% 0 15%;
+	}
+	nav {
+		padding: 10px 15% 10px 15%;
+	}
+	.header {
+		padding: 10px 15% 10px 15%;
+	}
+}
+
+@media only screen and (min-width: 70em) {
+  /* Style adjustments for viewports that meet the condition */
+	article {
+		padding: 0 20% 0 20%;
+	}
+	nav {
+		padding: 10px 20% 10px 20%;
+	}
+	.header {
+		padding: 10px 20% 10px 20%;
+	}
 }
 
 @media print,
