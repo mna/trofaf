@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	maxRecentPosts = 2
+	maxRecentPosts = 5
 )
 
 // TODO : All fatal errors should be non-stopping errors when generating the site. Allows
@@ -26,6 +26,7 @@ var (
 
 type sortableFileInfo []os.FileInfo
 
+// TODO : Should sort on pubtime of posts instead
 func (s sortableFileInfo) Len() int           { return len(s) }
 func (s sortableFileInfo) Less(i, j int) bool { return s[i].ModTime().Before(s[j].ModTime()) }
 func (s sortableFileInfo) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }

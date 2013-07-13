@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -87,5 +90,22 @@ module.exports = server;
 <p>C&rsquo;est ce qu&rsquo;il manque, à mon avis, aux solutions actuelles sous Javascript. Quelque chose pour valider que le contrat attendu par le &ldquo;client&rdquo; soit respecté par la dépendance fournie. J&rsquo;ai quelques idées sur le sujet, on verra si ça mûrira, gardez l&rsquo;oeil sur <a href="https://github.com/PuerkitoBio/express-boilerplate">le référentiel GitHub</a>, et si vous avez commentaires et suggestions, l&rsquo;espace ci-bas est là pour ça!</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

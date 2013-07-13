@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -81,5 +84,22 @@
 <p>J&rsquo;ai mis le code source dans ce <a href="https://gist.github.com/2371954">gist</a>, car le tout fait à peine 100 <a href="http://en.wikipedia.org/wiki/Source_lines_of_code">sloc</a>, il est probablement préférable de le copier et l&rsquo;insérer dans son modèle Backbone de base (et de le minifier avec son code maison) plutôt que de le distribuer comme une librairie indépendante. Et en plus, le code assume qu&rsquo;il hérite directement de Backbone.Model, alors que ce n&rsquo;est pas forcément le cas. Qui sait, peut-être qu&rsquo;un auteur de librairie Backbone de plus haut niveau sera intéressé à l&rsquo;intégrer dans son cadre de développement (<em>framework</em>).</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -124,5 +127,22 @@ jscoverage  jscoverage module for node.js  =kate.sf  2012-02-28 02:11
 <p>Dans un prochain article j&rsquo;aborderai les commandes davantage liées à une librairie spécifique, son fichier <code>package.json</code>, et les bonnes pratiques (toujours en évolution!) pour la gestion des dépendances d&rsquo;une application node.</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

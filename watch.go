@@ -51,7 +51,7 @@ func watch(w *fsnotify.Watcher) {
 			log.Println("WATCH ERROR ", err)
 
 		case <-delay:
-			log.Print("trigger regeneration of site")
+			log.Print("trigger generation of site")
 			generateSite()
 		}
 	}

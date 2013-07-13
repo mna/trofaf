@@ -15,7 +15,9 @@ html.no-js
 		<![endif]-->
 
 		div.header
-			a[href="/"] #{SiteName}
+			h1
+				a[href="/"] #{SiteName}
+				span #{TagLine}
 
 		article
 			nav
@@ -30,3 +32,14 @@ html.no-js
 							a[href=Next.Slug] #{Next.Title} >>
 
 			block content
+
+		footer
+			nav
+				ul
+					li Github
+					li Twitter
+					li
+						if Recent
+							ul
+								each $p in Recent
+									li #{$p.Title}

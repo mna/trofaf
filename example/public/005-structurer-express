@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -126,5 +129,22 @@ app.get('/', routes.index);
 <p>Est-ce que votre organisation du code ressemble à ça? Utilisez-vous quelque chose de radicalement différent? Faites-en part dans les commentaires!</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

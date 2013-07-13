@@ -15,6 +15,7 @@ import (
 
 type TemplateData struct {
 	SiteName string
+	TagLine  string
 	Post     *LongPost
 	Recent   []*ShortPost
 	Prev     *ShortPost
@@ -22,7 +23,12 @@ type TemplateData struct {
 }
 
 func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
-	td := &TemplateData{SiteName: SiteName, Post: p, Recent: r}
+	td := &TemplateData{
+		SiteName: Options.SiteName,
+		TagLine:  Options.TagLine,
+		Post:     p,
+		Recent:   r,
+	}
 	if i > 0 {
 		td.Prev = all[i-1].Short()
 	}

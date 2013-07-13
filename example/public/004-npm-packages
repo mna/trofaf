@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -138,5 +141,22 @@ mime@1.2.5 ./node_modules/express/node_modules/connect/node_modules/mime current
 <p>Un mot en terminant sur le <a href="http://search.npmjs.org/">registre</a>, je mentionnais dans mon <a href="http://hypermegatop.calepin.co/npm-la-base-essentielle-pour-debuter-avec-nodejs.html">dernier article sur npm</a> qu&rsquo;il était nécessaire de se créer un compte pour utiliser certaines commandes. Et bien une brèche de sécurité a été découverte (et corrigée). Un courriel a été envoyé par Isaac à tous ceux qui avaient fourni une adresse valide, mais je sais qu&rsquo;il a eu des problèmes avec GMail et certains n&rsquo;ont pas reçu l&rsquo;information, donc si c&rsquo;est votre cas, assurez-vous de consulter ce <a href="https://gist.github.com/2001456">gist</a> qui reprend le contenu du courriel et les étapes à suivre pour sécuriser votre compte.</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

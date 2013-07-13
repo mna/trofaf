@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -60,5 +63,22 @@
 <p>Quant au <em>design</em> du site, il sera peut-être minimaliste comme l&rsquo;était Calepin. Ou peut-être pas. Maintenant que je peux faire ce que je veux, je risque d&rsquo;expérimenter certains trucs, particulièrement avec le CSS. Et puis je n&rsquo;ai pas la notoriété d&rsquo;un <a href="http://dcurt.is/">Dustin Curtis</a>, possiblement que plus de tentacules sociales me seraient utiles. Tout ça reste à voir, mais en attendant le signal, c&rsquo;est encore ici, sur <a href="http://hypermegatop.calepin.co/">hypermegatop.calepin.co</a>, que ça se passe. 86&hellip; 85&hellip; 84 jours&hellip;</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>

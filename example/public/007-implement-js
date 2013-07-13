@@ -12,7 +12,10 @@
 	<body>
 		
 		<div class="header">
-			<a href="/">Some Name</a>
+			<h1>
+				<a href="/">zero value</a>
+				<span>A wysiwyg hypertext cybernet</span>
+			</h1>
 		</div>
 		<article>
 			<nav>
@@ -43,5 +46,22 @@
 <p>Les prochaines étapes sont assez simples, je vous invite à essayer la librairie, si vous croyez qu&rsquo;elle peut être utile dans vos projets. N&rsquo;hésitez pas à la faire partager avec vos collègues développeurs, et à <a href="https://github.com/PuerkitoBio/implement.js/issues">ouvrir un rapport d&rsquo;anomalie</a> au besoin. Encore mieux, si vous le pouvez, soumettez un correctif (un <em>pull request</em>). Je prévois ajouter la documentation de l&rsquo;API avec <a href="http://en.wikipedia.org/wiki/JSDoc">JSDoc</a> sous peu, et possiblement rendre la librairie disponible dans le fureteur.</p>
 </div>
 		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>Github</li>
+					<li>Twitter</li>
+					<li>
+						<ul>
+							<li>Méta-billet: un mot sur le Calepin!</li>
+							<li>npm: la base essentielle pour débuter avec node.js</li>
+							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
+							<li>Structurer une application Web avec Express et Node.js</li>
+							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</footer>
 	</body>
 </html>
