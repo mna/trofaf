@@ -120,8 +120,7 @@ a:hover {
 	padding: 10px 10% 10px 10%;
 	font-size: 140%;
 }
-
-.header a, .header span {
+.header a {
 	color: #FFFFFF;
 	text-decoration:none;
 }
@@ -199,21 +198,22 @@ nav {
 	padding: 10px 10% 10px 10%;
 	background-color: #44e383;
 }
-
 .container {
 	width: 100%;
 }
-.prev, .next, .current {
+.left, .middle {
 	float: left;
 }
-.prev, .next {
+.left, .right {
 	width: 25%;
 }
-.current {
+.middle {
 	width: 50%;
 	text-align: center;
+	margin-top: 10px;
 }
-.next {
+.right {
+	float: right;
 	text-align: right;
 }
 .huge {
@@ -222,9 +222,27 @@ nav {
 a.huge {
 	text-decoration:none;
 }
+footer {
+	background-color: #85B9E3;
+	min-height: 100px;
+	color: #403F3D;
+	padding: 10px 10% 10px 10%;
+}
+footer ul {
+		padding: 0;
+		margin: 0;
+    list-style: none;
+    list-style-image: none;
+}
+footer [class^="icon-"] {
+	font-size: 400%;
+}
 
-
-
+footer .middle {
+	clear: both;
+	width: 100%;
+}
+	
 
 
 /* ==========================================================================
@@ -342,8 +360,20 @@ a.huge {
 	nav {
 		padding: 10px 15% 10px 15%;
 	}
+	footer {
+		padding: 10px 15% 10px 15%;
+	}
 	.header {
 		padding: 10px 15% 10px 15%;
+		font-size: 160%;
+	}
+	.current {
+		font-size: 120%;
+	}
+	footer .middle {
+		clear: none;
+		float: left;
+		width: 50%;
 	}
 }
 
@@ -355,8 +385,15 @@ a.huge {
 	nav {
 		padding: 10px 20% 10px 20%;
 	}
+	footer {
+		padding: 10px 20% 10px 20%;
+	}
 	.header {
 		padding: 10px 20% 10px 20%;
+		font-size: 180%;
+	}
+	.current {
+		font-size: 140%;
 	}
 }
 

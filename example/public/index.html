@@ -8,26 +8,27 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/css/normalize.css" />
 		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/">Ø value</a>
+				<a href="/">Site Name</a>
 				<br />
-				<small>a wysiwyg hypertext cybersite</small>
+				<span class="tagline"></span>
 			</div>
 		</div>
 		<nav>
 			<div class="container">
-				<div class="prev">
+				<div class="left">
 					<span class="huge">•</span>
 				</div>
-				<div class="current">
+				<div class="middle">
 					<span>Méta-billet: un mot sur le Calepin!</span>
 				</div>
-				<div class="next">
+				<div class="right">
 					<a class="huge" href="003-dependances" title="npm: la base essentielle pour débuter avec node.js">»</a>
 				</div>
 				<div class="clearfix"></div>
@@ -84,21 +85,41 @@ Et voici une *emphase*, et _une autre_ avec une syntaxe alternative.
 </div>
 		</article>
 		<footer>
-			<nav>
-				<ul>
-					<li>Github</li>
-					<li>Twitter</li>
-					<li>
+			<div class="container">
+				<div class="left">
+					<a href="https://github.com/PuerkitoBio" title="@PuerkitoBio on GitHub">
+						<span class="icon-github-circled"></span>
+					</a>
+				</div>
+				<div class="right">
+					<a href="https://twitter.com/PuerkitoBio" title="@PuerkitoBio on Twitter">
+						<span class="icon-twitter"></span>
+					</a>
+				</div>
+				<div class="middle">
+					<h3>
+						Recent posts
 						<ul>
-							<li>Méta-billet: un mot sur le Calepin!</li>
-							<li>npm: la base essentielle pour débuter avec node.js</li>
-							<li>npm shrinkwrap: Comment contrôler ses dépendances</li>
-							<li>Structurer une application Web avec Express et Node.js</li>
-							<li>Expérimentations sur l&#39;injection de dépendance avec node.js</li>
+							<li>
+								<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+							</li>
+							<li>
+								<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+							</li>
+							<li>
+								<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+							</li>
+							<li>
+								<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+							</li>
+							<li>
+								<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
+							</li>
 						</ul>
-					</li>
-				</ul>
-			</nav>
+					</h3>
+				</div>
+				<div class="clearfix"></div>
+			</div>
 		</footer>
 	</body>
 </html>

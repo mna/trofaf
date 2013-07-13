@@ -9,6 +9,7 @@ html.no-js
 		meta[name="viewport"][content="width=device-width, initial-scale=1"]
 		link[rel="stylesheet"][href="/css/normalize.css"]
 		link[rel="stylesheet"][href="/css/main.css"]
+		link[rel="stylesheet"][href="/css/fontello.css"]
 		link[href="http://fonts.googleapis.com/css?family=Telex"][rel="stylesheet"][type="text/css"]
 	body
 		<!--[if lt IE 7]>
@@ -19,18 +20,18 @@ html.no-js
 			div.title
 				a[href="/"] #{SiteName}
 				br
-				small #{TagLine}
+				span.tagline #{TagLine}
 
 		nav
 			div.container
-				div.prev
+				div.left
 					if Prev
 						a.huge[href=Prev.Slug][title=Prev.Title] «
-					else 
+					else
 						span.huge •
-				div.current
+				div.middle
 					span #{Post.ShortPost.Title}
-				div.next
+				div.right
 					if Next
 						a.huge[href=Next.Slug][title=Next.Title] »
 					else
@@ -41,12 +42,18 @@ html.no-js
 			block content
 
 		footer
-			nav
-				ul
-					li Github
-					li Twitter
-					li
-						if Recent
+			div.container
+				div.left
+					a[href="https://github.com/PuerkitoBio"][title="@PuerkitoBio on GitHub"]
+						span.icon-github-circled
+				div.right
+					a[href="https://twitter.com/PuerkitoBio"][title="@PuerkitoBio on Twitter"]
+						span.icon-twitter
+				div.middle
+					if Recent
+						h3 Recent posts
 							ul
 								each $p in Recent
-									li #{$p.Title}
+									li
+										a[href=$p.Slug] #{$p.Title}
+				div.clearfix
