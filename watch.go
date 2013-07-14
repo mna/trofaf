@@ -41,8 +41,7 @@ func watch(w *fsnotify.Watcher) {
 	var delay <-chan time.Time
 	for {
 		select {
-		case ev := <-w.Event:
-			log.Println("watch event ", ev)
+		case <-w.Event:
 			// Regenerate the files after the delay, reset the delay if an event is triggered
 			// in the meantime
 			delay = time.After(watchEventDelay)
@@ -51,9 +50,10 @@ func watch(w *fsnotify.Watcher) {
 			log.Println("WATCH ERROR ", err)
 
 		case <-delay:
-			log.Print("trigger generation of site")
 			if err := generateSite(); err != nil {
-				log.Println("ERROR ", err)
+				log.Println("ERROR generating site: ", err)
+			} else {
+				log.Println("site generated")
 			}
 		}
 	}

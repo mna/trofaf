@@ -13,9 +13,6 @@ import (
 	"github.com/eknkc/amber"
 )
 
-// TODO : All fatal errors should be non-stopping errors when generating the site. Allows
-// for corrections of the code, then re-triggering the generation.
-
 var (
 	postTpl   *template.Template
 	postTplNm = "post.amber"
@@ -116,7 +113,7 @@ func generateSite() error {
 }
 
 func generateRss(td *TemplateData) error {
-	r := NewRss(td.SiteName, "", Options.BaseURL)
+	r := NewRss(td.SiteName, td.TagLine, Options.BaseURL)
 	base, err := url.Parse(Options.BaseURL)
 	if err != nil {
 		return fmt.Errorf("error parsing base URL: %s", err)
@@ -140,7 +137,7 @@ func generateFile(td *TemplateData, idx bool) error {
 	}
 	defer fw.Close()
 
-	// If this is the newer file, also save as index.html
+	// If this is the newest file, also save as index.html
 	w = fw
 	if idx {
 		idxw, err := os.Create(filepath.Join(PublicDir, "index.html"))
