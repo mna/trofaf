@@ -19,12 +19,12 @@ type TemplateData struct {
 	TagLine  string
 	RssURL   string
 	Post     *LongPost
-	Recent   []*ShortPost
+	Recent   []*LongPost
 	Prev     *ShortPost
 	Next     *ShortPost
 }
 
-func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *TemplateData {
+func newTemplateData(p *LongPost, i int, r []*LongPost, all []*LongPost) *TemplateData {
 	b, err := url.Parse(Options.BaseURL)
 	if err != nil {
 		panic(err) // TODO : Manage errors
@@ -43,7 +43,7 @@ func newTemplateData(p *LongPost, i int, r []*ShortPost, all []*LongPost) *Templ
 	if i > 0 {
 		td.Prev = all[i-1].Short()
 	}
-	if i < len(all)-2 {
+	if i < len(all)-1 {
 		td.Next = all[i+1].Short()
 	}
 	return td

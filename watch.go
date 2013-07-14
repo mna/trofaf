@@ -52,7 +52,9 @@ func watch(w *fsnotify.Watcher) {
 
 		case <-delay:
 			log.Print("trigger generation of site")
-			generateSite()
+			if err := generateSite(); err != nil {
+				log.Println("ERROR ", err)
+			}
 		}
 	}
 }

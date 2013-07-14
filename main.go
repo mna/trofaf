@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/jessevdk/go-flags"
+	"log"
 )
 
 func main() {
@@ -9,7 +10,9 @@ func main() {
 	if err == nil { // err != nil prints the usage automatically
 		if !Options.NoGen {
 			// Generate the site
-			generateSite()
+			if err := generateSite(); err != nil {
+				log.Fatal("FATAL ", err)
+			}
 			// Start the watcher
 			defer startWatcher().Close()
 		}

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -15,7 +15,6 @@ import (
 
 // TODO : All fatal errors should be non-stopping errors when generating the site. Allows
 // for corrections of the code, then re-triggering the generation.
-// TODO : Check for rss template, if present generate RSS feed
 
 var (
 	postTpl   *template.Template
@@ -23,125 +22,133 @@ var (
 	rssTplNm  = "rss.amber"
 )
 
-type sortableFileInfo []os.FileInfo
+type sortableLongPost []*LongPost
 
-// TODO : Should sort on pubtime of posts instead
-func (s sortableFileInfo) Len() int           { return len(s) }
-func (s sortableFileInfo) Less(i, j int) bool { return s[i].ModTime().Before(s[j].ModTime()) }
-func (s sortableFileInfo) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+func (s sortableLongPost) Len() int           { return len(s) }
+func (s sortableLongPost) Less(i, j int) bool { return s[i].PubTime.Before(s[j].PubTime) }
+func (s sortableLongPost) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
-func FilterDir(s sortableFileInfo) sortableFileInfo {
-	for i := 0; i < len(s); {
-		if s[i].IsDir() {
-			s[i], s = s[len(s)-1], s[:len(s)-1]
+func Filter(fi []os.FileInfo) []os.FileInfo {
+	for i := 0; i < len(fi); {
+		if fi[i].IsDir() || filepath.Ext(fi[i].Name()) != ".md" {
+			fi[i], fi = fi[len(fi)-1], fi[:len(fi)-1]
 		} else {
 			i++
 		}
 	}
-	return s
+	return fi
 }
 
-func compileTemplate() {
+func compileTemplate() error {
 	ap := filepath.Join(TemplatesDir, postTplNm)
 	if _, err := os.Stat(ap); os.IsNotExist(err) {
 		// Amber post template does not exist, compile the native Go templates
 		postTpl, err = template.ParseGlob(filepath.Join(TemplatesDir, "*.html"))
 		if err != nil {
-			log.Fatal("FATAL ", err)
+			return fmt.Errorf("error parsing templates: %s", err)
 		}
 		postTplNm = "post" // TODO : Validate this...
 	} else {
 		c := amber.New()
 		if err := c.ParseFile(ap); err != nil {
-			log.Fatal("FATAL ", err)
+			return fmt.Errorf("error parsing templates: %s", err)
 		}
 		if postTpl, err = c.Compile(); err != nil {
-			log.Fatal("FATAL ", err)
+			return fmt.Errorf("error compiling templates: %s", err)
 		}
 	}
+	return nil
 }
 
-func generateSite() {
-	// First compile the template(s)
-	compileTemplate()
+func clearPublicDir() error {
 	// Clear the public directory, except subdirs
 	fis, err := ioutil.ReadDir(PublicDir)
 	if err != nil {
-		log.Fatal("FATAL ", err)
+		return fmt.Errorf("error getting public directory files: %s", err)
 	}
 	for _, fi := range fis {
 		if !fi.IsDir() && fi.Name() != "favicon.ico" {
 			err = os.Remove(filepath.Join(PublicDir, fi.Name()))
 			if err != nil {
-				log.Println("DELETE ERROR ", err)
+				return fmt.Errorf("error deleting file %s: %s", fi.Name(), err)
 			}
 		}
 	}
+	return nil
+}
+
+func generateSite() error {
+	// First compile the template(s)
+	if err := compileTemplate(); err != nil {
+		return err
+	}
 	// Now read the posts
-	fis, err = ioutil.ReadDir(PostsDir)
+	fis, err := ioutil.ReadDir(PostsDir)
 	if err != nil {
-		log.Fatal("FATAL ", err)
+		return err
 	}
-	sfi := sortableFileInfo(fis)
-	sfi = FilterDir(sfi)
-	sort.Reverse(sfi)
+	// Remove directories from the list, keep only .md files
+	fis = Filter(fis)
 
-	recent := make([]*ShortPost, Options.RecentPostsCount)
-	all := make([]*LongPost, len(sfi))
-	// First pass to get the recent posts (and others) so that
-	// they can be passed to all posts.
-	for i, fi := range sfi {
+	// Get all posts.
+	all := make(sortableLongPost, len(fis))
+	for i, fi := range fis {
 		all[i] = newLongPost(fi)
-		if i < Options.RecentPostsCount {
-			recent[i] = all[i].Short()
-		}
 	}
-
+	// Then sort in reverse order (newer first)
+	sort.Sort(sort.Reverse(all))
+	// Slice to get only recent posts
+	recent := all[:Options.RecentPostsCount]
+	// Delete current public directory files
+	if err := clearPublicDir(); err != nil {
+		return err
+	}
+	// Generate the static files
 	for i, p := range all {
 		td := newTemplateData(p, i, recent, all)
-		generateFile(td, i == 0)
+		if err := generateFile(td, i == 0); err != nil {
+			return err
+		}
 	}
+	// Generate the RSS feed
 	td := newTemplateData(nil, 0, recent, nil)
-	if err := generateRss(td); err != nil {
-		log.Fatal("FATAL ", err)
-	}
+	return generateRss(td)
 }
 
 func generateRss(td *TemplateData) error {
 	r := NewRss(td.SiteName, "", Options.BaseURL)
 	base, err := url.Parse(Options.BaseURL)
 	if err != nil {
-		return err
+		return fmt.Errorf("error parsing base URL: %s", err)
 	}
 	for _, p := range td.Recent {
 		u, err := base.Parse(p.Slug)
 		if err != nil {
-			return err
+			return fmt.Errorf("error parsing post URL: %s", err)
 		}
 		r.Channels[0].AppendItem(NewRssItem(p.Title, u.String(), p.Description, p.Author, "", p.PubTime))
 	}
 	return r.WriteToFile(filepath.Join(PublicDir, "rss"))
 }
 
-func generateFile(td *TemplateData, idx bool) {
+func generateFile(td *TemplateData, idx bool) error {
 	var w io.Writer
 
 	fw, err := os.Create(filepath.Join(PublicDir, td.Post.Slug))
 	if err != nil {
-		log.Fatal("FATAL ", err)
+		return fmt.Errorf("error creating static file %s: %s", td.Post.Slug, err)
 	}
 	defer fw.Close()
+
+	// If this is the newer file, also save as index.html
 	w = fw
 	if idx {
 		idxw, err := os.Create(filepath.Join(PublicDir, "index.html"))
 		if err != nil {
-			log.Fatal("FATAL ", err)
+			return fmt.Errorf("error creating static file index.html: %s", err)
 		}
 		defer idxw.Close()
 		w = io.MultiWriter(fw, idxw)
 	}
-	err = postTpl.ExecuteTemplate(w, postTplNm, td)
-	if err != nil {
-		log.Fatal("FATAL ", err)
-	}
+	return postTpl.ExecuteTemplate(w, postTplNm, td)
 }

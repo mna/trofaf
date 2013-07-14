@@ -24,13 +24,13 @@
 		<nav>
 			<div class="container">
 				<div class="left">
-					<a class="huge" href="009-je-men-vais" title="Je suis venu te dire que je m&#39;en vais">«</a>
+					<span class="huge">•</span>
 				</div>
 				<div class="middle">
 					<span>Ce blogue a déménagé sur GitHub</span>
 				</div>
 				<div class="right">
-					<span class="huge">•</span>
+					<a class="huge" href="009-je-men-vais" title="Je suis venu te dire que je m&#39;en vais">»</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -55,16 +55,16 @@
 					<h3>Recent posts</h3>
 					<ul>
 						<li>
-							<a href="002-meta-billet">Méta-billet: un mot sur le Calepin!</a>
+							<a href="010-demenagement">Ce blogue a déménagé sur GitHub</a>
 						</li>
 						<li>
-							<a href="003-dependances">npm: la base essentielle pour débuter avec node.js</a>
+							<a href="009-je-men-vais">Je suis venu te dire que je m&#39;en vais</a>
 						</li>
 						<li>
-							<a href="004-npm-packages">npm shrinkwrap: Comment contrôler ses dépendances</a>
+							<a href="008-backbone-computed-properties">Propriétés calculées avec Backbone</a>
 						</li>
 						<li>
-							<a href="005-structurer-express">Structurer une application Web avec Express et Node.js</a>
+							<a href="007-implement-js">implement.js: typage fort et Javascript</a>
 						</li>
 						<li>
 							<a href="006-dependency-injection">Expérimentations sur l&#39;injection de dépendance avec node.js</a>
