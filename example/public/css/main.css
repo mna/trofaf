@@ -210,6 +210,8 @@ nav {
 .middle {
 	width: 50%;
 	text-align: center;
+}
+nav .middle {
 	margin-top: 10px;
 }
 .right {

@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"github.com/eknkc/amber"
 )
@@ -17,6 +18,21 @@ var (
 	postTpl   *template.Template
 	postTplNm = "post.amber"
 	rssTplNm  = "rss.amber"
+
+	// Special files in the public directory, that must not be deleted
+	// If value is true, this must match the prefix of the file (HasPrefix())
+	specFiles = map[string]struct{}{
+		"favicon.ico":                              struct{}{},
+		"robots.txt":                               struct{}{},
+		"humans.txt":                               struct{}{},
+		"crossdomain.xml":                          struct{}{},
+		"apple-touch-icon.png":                     struct{}{},
+		"apple-touch-icon-114x114-precomposed.png": struct{}{},
+		"apple-touch-icon-144x144-precomposed.png": struct{}{},
+		"apple-touch-icon-57x57-precomposed.png":   struct{}{},
+		"apple-touch-icon-72x72-precomposed.png":   struct{}{},
+		"apple-touch-icon-precomposed.png":         struct{}{},
+	}
 )
 
 type sortableLongPost []*LongPost
@@ -58,16 +74,19 @@ func compileTemplate() error {
 }
 
 func clearPublicDir() error {
-	// Clear the public directory, except subdirs
+	// Clear the public directory, except subdirs and special files (favicon.ico)
 	fis, err := ioutil.ReadDir(PublicDir)
 	if err != nil {
 		return fmt.Errorf("error getting public directory files: %s", err)
 	}
 	for _, fi := range fis {
-		if !fi.IsDir() && fi.Name() != "favicon.ico" {
-			err = os.Remove(filepath.Join(PublicDir, fi.Name()))
-			if err != nil {
-				return fmt.Errorf("error deleting file %s: %s", fi.Name(), err)
+		if !fi.IsDir() && !strings.HasPrefix(fi.Name(), ".") {
+			// Check for special files
+			if _, ok := specFiles[fi.Name()]; !ok {
+				err = os.Remove(filepath.Join(PublicDir, fi.Name()))
+				if err != nil {
+					return fmt.Errorf("error deleting file %s: %s", fi.Name(), err)
+				}
 			}
 		}
 	}

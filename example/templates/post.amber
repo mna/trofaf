@@ -1,9 +1,6 @@
 extends layout
 
 block content
-	if Post.ShortPost.Lang
-		article[lang=Post.ShortPost.Lang]
-			#{unescaped(Post.Content)}
-	else
-		article
-			#{unescaped(Post.Content)}
+	article
+		[lang=Post.ShortPost.Lang] ? len(Post.ShortPost.Lang) > 0
+		| #{unescaped(Post.Content)}
