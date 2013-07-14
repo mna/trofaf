@@ -16,6 +16,9 @@ More to come...
 
 ## License
 
+The [BSD 3-Clause License][4].
+
 [1]: http://daringfireball.net/projects/markdown/syntax
 [2]: https://github.com/eknkc/amber
 [3]: http://golang.org/pkg/html/template/
+[4]: http://opensource.org/licenses/BSD-3-Clause
