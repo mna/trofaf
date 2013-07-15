@@ -1,18 +1,59 @@
 # trofaf
 
-`trofaf` is a super simple *live* static blog engine built with Go. It is super simple in that it only requires a simple directory structure to work, and offers only the minimum required features for a blog to exist.
+trofaf is a super-simple *live* static blog engine.
 
-It is *live* because it watches for changes in the posts and templates directories, and regenerates the site as needed.
+Install using: `go get github.com/PuerkitoBio/trofaf`
 
-It is *static* because the web server only serves pre-generated, static content.
+## Description
 
-It understands [markdown][1] syntax for posts, and [amber][2] or [native Go][3] templates.
+It generates a static website from [*markdown* files][1] and front matter, and requires only a simple 3-directories structure to get going. It favors simplicity over features.
 
-More to come...
+To get started, create the 3 subdirectories (you can look at the `example/` subdirectory for... an example): 
 
-## Installation
+* posts 
+* public 
+* templates
 
-## How it works
+trofaf only cares about `*.md` files in the posts directory, and about `*.amber` ([Amber templates][2]) or `*.html` ([native Go templates][3]) files in the templates directory. It will watch for changes, creates or deletes on those files in these directories, and will re-generate automatically the website when required. This is the *live* part.
+
+All files in the public directory are exposed by the web server. Posts in markdown format get translated to static html files at the root of the public directory. The html file name is an URL-friendly slug generated from the original markdown file name. There is no extension, so the URL looks clean and, uh, *modern*?
+
+An RSS feed is automatically generated from a number of recent posts, and saved as a static XML file in the public directory.
+
+There is no special template for an index page, the most recent post (based on the publication date found in the front matter of the markdown files) is saved twice - once under its own html file, once under the index.html file, so that this is the page displayed when the root of the web server is requested.
+
+When the site is (re-)generated, the public directory must be cleaned, because some posts may have been deleted. Subdirectories are left untouched (so that `css/` or `js/` directories can coexist peacefully), as well as hidden (dot) files, and some special files are also graced from the destruction (robots.txt, favicon.ico, etc., see gen.go).
+
+## Command-line Options
+
+The following options can be set at the command-line: 
+
+* Port (-p) : the port number for the web server, defaults to 9000.
+* NoGen (-G) : prevents watching and live-generating the site. This is equivalent to running the static public directory.
+* SiteName (-n) : the name of the web site, passed to the template.
+* TagLine (-t) : a tag line for the web site, passed to the template.
+* RecentPostsCount (-r) : the number of posts in the recent posts list, passed to the template and used for the RSS feed.
+* BaseURL (-b) : the base URL of the web site, most likely the host name (i.e. http://www.mysite.com).
+
+## Front matter
+
+Like many static blog generators, trofaf uses *YAML front matter* to get metadata for a post. This is a complicated way to say that you have to add blocks of text like this at the start of your posts:
+
+```
+---
+Title: My title
+Description: My short-ish description of the post.
+Author: Me
+Date: 2013-07-14
+Lang: en
+---
+
+# Here is my post!
+
+Etc.
+```
+
+The three dashes delimit the front matter. It must be there, beginning and end. Between the dashes, the part before the colon `:` is the key, and after is the value. Simple as that. Title, Description, Author, Date and Lang are recognized. Date **must** be in the yyyy-MM-dd format.
 
 ## License
 
