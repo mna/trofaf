@@ -123,8 +123,12 @@ func generateSite() error {
 	}
 	// Then sort in reverse order (newer first)
 	sort.Sort(sort.Reverse(all))
+	cnt := Options.RecentPostsCount
+	if l := len(all); l < cnt {
+		cnt = l
+	}
 	// Slice to get only recent posts
-	recent := all[:Options.RecentPostsCount]
+	recent := all[:cnt]
 	// Delete current public directory files
 	if err := clearPublicDir(); err != nil {
 		return err
