@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/howeyc/fsnotify"
@@ -14,6 +16,7 @@ const (
 	watchEventDelay = 10 * time.Second
 )
 
+// Create and start a watcher, watching both the posts and the templates directories.
 func startWatcher() *fsnotify.Watcher {
 	w, err := fsnotify.NewWatcher()
 	if err != nil {
@@ -33,7 +36,7 @@ func startWatcher() *fsnotify.Watcher {
 	return w
 }
 
-// Receive watcher events for the posts directory. All events require re-generating
+// Receive watcher events for the directories. All events require re-generating
 // the whole site (because the template may display the n most recent posts, the
 // next and previous post, etc.). It could be fine-tuned based on what data we give
 // to the templates, but for now, lazy approach.
@@ -41,10 +44,17 @@ func watch(w *fsnotify.Watcher) {
 	var delay <-chan time.Time
 	for {
 		select {
-		case <-w.Event:
+		case ev := <-w.Event:
 			// Regenerate the files after the delay, reset the delay if an event is triggered
 			// in the meantime
-			delay = time.After(watchEventDelay)
+			ext := filepath.Ext(ev.Name)
+			// Care only about changes to markdown files in the Posts directory, or to
+			// Amber or Native Go template files in the Templates directory.
+			if strings.HasPrefix(ev.Name, PostsDir) && ext == ".md" {
+				delay = time.After(watchEventDelay)
+			} else if strings.HasPrefix(ev.Name, TemplatesDir) && (ext == ".amber" || ext == ".html") {
+				delay = time.After(watchEventDelay)
+			}
 
 		case err := <-w.Error:
 			log.Println("WATCH ERROR ", err)

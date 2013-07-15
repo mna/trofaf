@@ -11,10 +11,12 @@ import (
 )
 
 var (
+	// Favicon path and cache duration
 	faviconPath  = filepath.Join(PublicDir, "favicon.ico")
 	faviconCache = 2 * 24 * time.Hour
 )
 
+// Start serving the blog.
 func run() {
 	h := handlers.FaviconHandler(
 		handlers.PanicHandler(

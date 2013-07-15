@@ -1,5 +1,5 @@
 ---
-Date: 2012-03-05
+Date: 2012-03-01
 Title: npm: la base essentielle pour débuter avec node.js
 Author: Martin Angers
 Category: technologie

@@ -2,12 +2,14 @@ package main
 
 import (
 	"log"
+	"net/url"
 	"os"
 	"path/filepath"
 
 	"github.com/jessevdk/go-flags"
 )
 
+// This structure holds the command-line options.
 type options struct {
 	Port             int    `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
 	NoGen            bool   `short:"G" long:"no-generation" description:"when set, the site is not automatically generated"`
@@ -18,13 +20,16 @@ type options struct {
 }
 
 var (
-	Options      options
-	PublicDir    string
-	PostsDir     string
-	TemplatesDir string
+	// The one and only Options parsed from the command-line
+	Options options
+
+	PublicDir    string // Public directory path
+	PostsDir     string // Posts directory path
+	TemplatesDir string // Templates directory path
+	RssURL       string // The RSS feed URL, parsed only once and stored for convenience
 )
 
-func main() {
+func init() {
 	// Initialize directories
 	pwd, err := os.Getwd()
 	if err != nil {
@@ -33,10 +38,25 @@ func main() {
 	PublicDir = filepath.Join(pwd, "public")
 	PostsDir = filepath.Join(pwd, "posts")
 	TemplatesDir = filepath.Join(pwd, "templates")
+}
 
+func storeRssURL() {
+	b, err := url.Parse(Options.BaseURL)
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
+	r, err := b.Parse("/rss")
+	if err != nil {
+		log.Fatal("FATAL ", err)
+	}
+	RssURL = r.String()
+}
+
+func main() {
 	// Parse the flags
-	_, err = flags.Parse(&Options)
+	_, err := flags.Parse(&Options)
 	if err == nil { // err != nil prints the usage automatically
+		storeRssURL()
 		if !Options.NoGen {
 			// Generate the site
 			if err := generateSite(); err != nil {

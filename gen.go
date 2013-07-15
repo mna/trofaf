@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -15,9 +16,8 @@ import (
 )
 
 var (
-	postTpl   *template.Template
-	postTplNm = "post.amber"
-	rssTplNm  = "rss.amber"
+	postTpl   *template.Template // The one and only compiled post template
+	postTplNm = "post.amber"     // The amber post template file name (native Go are compiled using ParseGlob)
 
 	// Special files in the public directory, that must not be deleted
 	// If value is true, this must match the prefix of the file (HasPrefix())
@@ -35,12 +35,14 @@ var (
 	}
 )
 
+// This type is a slice of *LongPost that implements the sort.Interface, to sort in PubTime order.
 type sortableLongPost []*LongPost
 
 func (s sortableLongPost) Len() int           { return len(s) }
 func (s sortableLongPost) Less(i, j int) bool { return s[i].PubTime.Before(s[j].PubTime) }
 func (s sortableLongPost) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
+// Filter cleans the slice of FileInfo to leave only `.md` files (markdown)
 func Filter(fi []os.FileInfo) []os.FileInfo {
 	for i := 0; i < len(fi); {
 		if fi[i].IsDir() || filepath.Ext(fi[i].Name()) != ".md" {
@@ -52,6 +54,7 @@ func Filter(fi []os.FileInfo) []os.FileInfo {
 	return fi
 }
 
+// Compile the Post template.
 func compileTemplate() error {
 	ap := filepath.Join(TemplatesDir, postTplNm)
 	if _, err := os.Stat(ap); os.IsNotExist(err) {
@@ -73,6 +76,7 @@ func compileTemplate() error {
 	return nil
 }
 
+// Clear the public directory, ignoring special files, subdirectories, and hidden (dot) files.
 func clearPublicDir() error {
 	// Clear the public directory, except subdirs and special files (favicon.ico)
 	fis, err := ioutil.ReadDir(PublicDir)
@@ -93,6 +97,7 @@ func clearPublicDir() error {
 	return nil
 }
 
+// Generate the whole site.
 func generateSite() error {
 	// First compile the template(s)
 	if err := compileTemplate(); err != nil {
@@ -107,9 +112,14 @@ func generateSite() error {
 	fis = Filter(fis)
 
 	// Get all posts.
-	all := make(sortableLongPost, len(fis))
-	for i, fi := range fis {
-		all[i] = newLongPost(fi)
+	all := make(sortableLongPost, 0, len(fis))
+	for _, fi := range fis {
+		lp, err := newLongPost(fi)
+		if err == nil {
+			all = append(all, lp)
+		} else {
+			log.Printf("post skipped: %s; error: %s\n", fi.Name(), err)
+		}
 	}
 	// Then sort in reverse order (newer first)
 	sort.Sort(sort.Reverse(all))
@@ -131,6 +141,7 @@ func generateSite() error {
 	return generateRss(td)
 }
 
+// Creates the rss feed from the recent posts.
 func generateRss(td *TemplateData) error {
 	r := NewRss(td.SiteName, td.TagLine, Options.BaseURL)
 	base, err := url.Parse(Options.BaseURL)
@@ -147,6 +158,7 @@ func generateRss(td *TemplateData) error {
 	return r.WriteToFile(filepath.Join(PublicDir, "rss"))
 }
 
+// Generate the static HTML file for the post identified by the index.
 func generateFile(td *TemplateData, idx bool) error {
 	var w io.Writer
 

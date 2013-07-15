@@ -17,12 +17,14 @@ import (
 	"time"
 )
 
+// The root Rss structure
 type Rss struct {
 	XMLName  xml.Name   `xml:"rss"`
 	Version  string     `xml:"version,attr"`
 	Channels []*Channel `xml:"channel"`
 }
 
+// The Rss channel structure
 type Channel struct {
 	Title         string   `xml:"title"`
 	Description   string   `xml:"description"`
@@ -33,12 +35,14 @@ type Channel struct {
 	Item          []*Item  `xml:"item"`
 }
 
+// The rss image structure
 type Image struct {
 	Url   string `xml:"url"`
 	Title string `xml:"title"`
 	Link  string `xml:"link"`
 }
 
+// The Rss item structure
 type Item struct {
 	Title       string   `xml:"title"`
 	Link        string   `xml:"link"`
@@ -49,6 +53,7 @@ type Item struct {
 	Image       []*Image `xml:"image"`
 }
 
+// Create a new RSS feed
 func NewRss(title string, description string, link string) *Rss {
 	rss := &Rss{Version: "2.0",
 		Channels: []*Channel{
@@ -66,6 +71,7 @@ func NewRss(title string, description string, link string) *Rss {
 	return rss
 }
 
+// Create a new, orphan Rss Item.
 func NewRssItem(title, link, description, author, category string, pubTime time.Time) *Item {
 	return &Item{
 		Title:       title,
@@ -78,7 +84,7 @@ func NewRssItem(title, link, description, author, category string, pubTime time.
 	}
 }
 
-// Add a new Item to the feed
+// Add an Item to the feed, under this Channel
 func (ch *Channel) AppendItem(i *Item) {
 	ch.Item = append(ch.Item, i)
 }

@@ -1,5 +1,5 @@
 ---
-Date: 2012-03-12
+Date: 2012-03-01
 Title: npm shrinkwrap: Comment contrôler ses dépendances
 Author: Martin Angers
 Category: technologie

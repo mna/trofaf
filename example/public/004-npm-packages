@@ -10,15 +10,15 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="/rss" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Ø value</a>
 				<br />
-				<span class="tagline"></span>
+				<span class="tagline">a wysiwyg hypertext cybersite</span>
 			</div>
 		</div>
 		<nav>
