@@ -64,9 +64,9 @@ func BenchmarkGenerateSite(b *testing.B) {
 	b.StopTimer()
 	log.SetOutput(ioutil.Discard)
 	Options.RecentPostsCount = 5
-	PublicDir = "./example/public"
-	PostsDir = "./example/posts"
-	TemplatesDir = "./example/templates"
+	PublicDir = "./examples/amber/public"
+	PostsDir = "./examples/amber/posts"
+	TemplatesDir = "./examples/amber/templates"
 	b.StartTimer()
 
 	for i := 0; i < b.N; i++ {

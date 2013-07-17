@@ -1,0 +1,10 @@
+{{ define "post" }}
+<html>
+	<head>
+		<title>{{ .Post.ShortPost.Title }}</title>
+	</head>
+	<body>
+		{{ template "content" . }}
+	</body>
+</html>
+{{ end }}

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Site Name</title><description></description><link>http://localhost</link><lastBuildDate>16 Jul 13 21:30 EDT</lastBuildDate><generator>trofaf (https://github.com/PuerkitoBio/trofaf)</generator><item><title>This is a test</title><link>http://localhost/test</link><description>Whatever</description><author>Me</author><category></category><pubDate>17 Jul 13 00:00 UTC</pubDate></item></channel></rss>

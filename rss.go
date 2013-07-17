@@ -61,7 +61,7 @@ func NewRss(title string, description string, link string) *Rss {
 				Title:       title,
 				Description: description,
 				Link:        link,
-				Generator:   "trofaf",
+				Generator:   "trofaf (https://github.com/PuerkitoBio/trofaf)",
 				Image:       make([]*Image, 0),
 				Item:        make([]*Item, 0),
 			},
@@ -79,7 +79,7 @@ func NewRssItem(title, link, description, author, category string, pubTime time.
 		Description: description,
 		Author:      author,
 		Category:    category,
-		PubDate:     pubTime.Format(time.RFC822Z),
+		PubDate:     pubTime.Format(time.RFC822),
 		Image:       make([]*Image, 0),
 	}
 }
@@ -91,7 +91,7 @@ func (ch *Channel) AppendItem(i *Item) {
 
 // Writes the data in RSS 2.0 format to a given file
 func (rss *Rss) WriteToFile(path string) error {
-	rss.Channels[0].LastBuildDate = time.Now().Format(time.RFC822Z)
+	rss.Channels[0].LastBuildDate = time.Now().Format(time.RFC822)
 	file, err := os.Create(path)
 	if err != nil {
 		return err

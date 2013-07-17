@@ -1,0 +1,6 @@
+{{ define "content" }}
+<article>
+	<h1>{{ .Post.ShortPost.Title }}</h1>
+	<div>{{ .Post.Content | noescape }}</div>
+</article>
+{{ end }}
