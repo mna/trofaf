@@ -3,4 +3,4 @@ extends layout
 block content
 	article
 		[lang=Post.ShortPost.Lang] ? len(Post.ShortPost.Lang) > 0
-		| #{unescaped(Post.Content)}
+		| #{Post.Content}

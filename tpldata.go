@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"html/template"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -63,7 +64,7 @@ type ShortPost struct {
 // The LongPost structure adds the parsed content of the post to the embedded ShortPost information.
 type LongPost struct {
 	*ShortPost
-	Content string
+	Content template.HTML
 }
 
 // Replace special characters to form a valid slug (post path)
@@ -149,7 +150,7 @@ func newLongPost(fi os.FileInfo) (*LongPost, error) {
 	res := blackfriday.MarkdownCommon(buf.Bytes())
 	lp := &LongPost{
 		sp,
-		string(res),
+		template.HTML(res),
 	}
 	return lp, nil
 }
