@@ -36,14 +36,14 @@ var (
 )
 
 // This type is a slice of *LongPost that implements the sort.Interface, to sort in PubTime order.
-type sortableLongPost []*LongPost
+type sortablePosts []*LongPost
 
-func (s sortableLongPost) Len() int           { return len(s) }
-func (s sortableLongPost) Less(i, j int) bool { return s[i].PubTime.Before(s[j].PubTime) }
-func (s sortableLongPost) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+func (s sortablePosts) Len() int           { return len(s) }
+func (s sortablePosts) Less(i, j int) bool { return s[i].PubTime.Before(s[j].PubTime) }
+func (s sortablePosts) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
 // Filter cleans the slice of FileInfo to leave only `.md` files (markdown)
-func Filter(fi []os.FileInfo) []os.FileInfo {
+func filter(fi []os.FileInfo) []os.FileInfo {
 	for i := 0; i < len(fi); {
 		if fi[i].IsDir() || filepath.Ext(fi[i].Name()) != ".md" {
 			fi[i], fi = fi[len(fi)-1], fi[:len(fi)-1]
@@ -55,7 +55,7 @@ func Filter(fi []os.FileInfo) []os.FileInfo {
 }
 
 // Compile the Post template.
-func compileTemplate() error {
+func compileTemplates() error {
 	ap := filepath.Join(TemplatesDir, postTplNm)
 	if _, err := os.Stat(ap); os.IsNotExist(err) {
 		// Amber post template does not exist, compile the native Go templates
@@ -63,7 +63,7 @@ func compileTemplate() error {
 		if err != nil {
 			return fmt.Errorf("error parsing templates: %s", err)
 		}
-		postTplNm = "post" // TODO : Validate this...
+		postTplNm = "post"
 	} else {
 		c := amber.New()
 		if err := c.ParseFile(ap); err != nil {
@@ -97,10 +97,31 @@ func clearPublicDir() error {
 	return nil
 }
 
+func getPosts(fis []os.FileInfo) (all, recent []*LongPost) {
+	all = make([]*LongPost, 0, len(fis))
+	for _, fi := range fis {
+		lp, err := newLongPost(fi)
+		if err == nil {
+			all = append(all, lp)
+		} else {
+			log.Printf("post ignored: %s; error: %s\n", fi.Name(), err)
+		}
+	}
+	// Then sort in reverse order (newer first)
+	sort.Sort(sort.Reverse(sortablePosts(all)))
+	cnt := Options.RecentPostsCount
+	if l := len(all); l < cnt {
+		cnt = l
+	}
+	// Slice to get only recent posts
+	recent = all[:cnt]
+	return
+}
+
 // Generate the whole site.
 func generateSite() error {
 	// First compile the template(s)
-	if err := compileTemplate(); err != nil {
+	if err := compileTemplates(); err != nil {
 		return err
 	}
 	// Now read the posts
@@ -109,26 +130,9 @@ func generateSite() error {
 		return err
 	}
 	// Remove directories from the list, keep only .md files
-	fis = Filter(fis)
-
+	fis = filter(fis)
 	// Get all posts.
-	all := make(sortableLongPost, 0, len(fis))
-	for _, fi := range fis {
-		lp, err := newLongPost(fi)
-		if err == nil {
-			all = append(all, lp)
-		} else {
-			log.Printf("post skipped: %s; error: %s\n", fi.Name(), err)
-		}
-	}
-	// Then sort in reverse order (newer first)
-	sort.Sort(sort.Reverse(all))
-	cnt := Options.RecentPostsCount
-	if l := len(all); l < cnt {
-		cnt = l
-	}
-	// Slice to get only recent posts
-	recent := all[:cnt]
+	all, recent := getPosts(fis)
 	// Delete current public directory files
 	if err := clearPublicDir(); err != nil {
 		return err

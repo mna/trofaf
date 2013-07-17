@@ -18,7 +18,7 @@ func mustParse(s string) time.Time {
 }
 
 func TestSort(t *testing.T) {
-	ps := make(sortableLongPost, 5)
+	ps := make(sortablePosts, 5)
 	ps[0] = &LongPost{
 		ShortPost: &ShortPost{
 			Title:   "a",
