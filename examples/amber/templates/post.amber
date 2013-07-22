@@ -1,6 +1,7 @@
 extends layout
 
 block content
+	time #{fmttime(Post.ShortPost.PubTime, "2006-01-02")}
 	article
 		[lang=Post.ShortPost.Lang] ? len(Post.ShortPost.Lang) > 0
 		| #{Post.Content}

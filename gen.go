@@ -11,8 +11,9 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 
-	"github.com/eknkc/amber"
+	"github.com/PuerkitoBio/amber"
 )
 
 var (
@@ -33,7 +34,19 @@ var (
 		"apple-touch-icon-72x72-precomposed.png":   struct{}{},
 		"apple-touch-icon-precomposed.png":         struct{}{},
 	}
+
+	funcs = template.FuncMap{
+		"fmttime": func(t time.Time, f string) string {
+			return t.Format(f)
+		},
+	}
 )
+
+func init() {
+	// Add the custom functions to Amber in the init(), since this is global
+	// (package) state in my Amber fork.
+	amber.AddFuncs(funcs)
+}
 
 // This type is a slice of *LongPost that implements the sort.Interface, to sort in PubTime order.
 type sortablePosts []*LongPost
@@ -59,7 +72,7 @@ func compileTemplates() error {
 	ap := filepath.Join(TemplatesDir, postTplNm)
 	if _, err := os.Stat(ap); os.IsNotExist(err) {
 		// Amber post template does not exist, compile the native Go templates
-		postTpl, err = template.ParseGlob(filepath.Join(TemplatesDir, "*.html"))
+		postTpl, err = template.New("templates").Funcs(funcs).ParseGlob(filepath.Join(TemplatesDir, "*.html"))
 		if err != nil {
 			return fmt.Errorf("error parsing templates: %s", err)
 		}

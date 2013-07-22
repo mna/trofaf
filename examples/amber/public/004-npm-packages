@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-03-01</time>
 			<article><p>Utiliser une librairie existante permet d&rsquo;ajouter rapidement des fonctionnalités à une application, et de concentrer ses efforts sur les nouveautés, les spécificités de son projet, plutôt qu&rsquo;à réinventer la roue. Cependant, chaque librairie utilisée devient une dépendance, et une dépendance est un risque. Un risque car notre code dépend maintenant de ce corps étranger sur lequel on a généralement peu ou pas de contrôle. Les meilleures pratiques pour limiter ce risque ont évolué rapidement sur la plateforme node.js ces derniers mois.</p>
 
 <blockquote>

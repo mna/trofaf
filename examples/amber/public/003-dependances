@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-03-01</time>
 			<article lang="fr"><p>La plateforme node.js est <a href="https://github.com/joyent/node/wiki/node-core-vs-userland">volontairement limitée</a>, en son coeur, aux fonctionnalités les plus fondamentales. Elle mise donc sur les contributions - souvent époustouflantes, <a href="http://hypermegatop.calepin.co/propulse-par-nodejs.html">j&rsquo;en parle ici</a> - de sa communauté pour enrichir le noyau et repousser les limites du possible.</p>
 
 <p>Avec près de 8000 librairies pullulant dans son écosystème, il y a sérieux danger de chaos. Et si on y retrouve plutôt quelque chose comme une belle organisation, c&rsquo;est en bonne partie grâce à la colonne vertébrale qui unit et soutient cette terre fertile, le gestionnaire de librairies <a href="http://npmjs.org/">npm</a>. Présentation, trucs et astuces dans les lignes qui suivent.</p>

@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-04-13</time>
 			<article><p>Je travaille actuellement à temps plein sur mon application-en-devenir de <a href="http://www.compterenduweb.com/">Compte Rendu Web</a>. Cette immersion totale en Javascript, <a href="http://nodejs.org/">node.js</a> et <a href="http://backbonejs.org/">Backbone</a> est très intéressante. La beauté de l&rsquo;univers du code libre dans lequel baignent ces technologies est que lorsqu&rsquo;il manque une fonctionnalité, on peut se retrousser les manches, ouvrir le code et l&rsquo;ajouter. Voici ma petite histoire des propriétés calculées (<em>computed properties</em>) avec Backbone.</p>
 
 <h3>Pas encore une controverse Backbone vs Knockout&hellip;</h3>

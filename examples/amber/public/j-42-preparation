@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-02-21</time>
 			<article><p>Le développement d&rsquo;une application Web (d&rsquo;un <a href="http://fr.wikipedia.org/wiki/Logiciel_en_tant_que_service" title="Logiciel en tant que service">SaaS</a>, si vous préférez) est ponctué d&rsquo;une multitude de choix technologiques.
 Pour <a href="http://www.compterenduweb.com/">le compte rendu Web</a>, le coeur technologique, celui qui a orienté pratiquement tous les autres choix, n&rsquo;a pourtant pas fait l&rsquo;objet
 d&rsquo;une réflexion, d&rsquo;une étude comparative. Loin s&rsquo;en faut. Il a plutôt été l&rsquo;élément déclencheur de tout le projet.</p>

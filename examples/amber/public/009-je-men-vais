@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-04-23</time>
 			<article><p>Ou plutôt, &ldquo;je suis venu te dire qu&rsquo;on m&rsquo;évince&rdquo;, mais ça <em>punch</em> moins&hellip; En effet, mon <a href="http://hypermegatop.calepin.co/meta-billet-un-mot-sur-le-calepin.html">coup de foudre</a> pour le blogiciel Calepin aura finalement été son baiser de la mort. <a href="https://twitter.com/#!/calepinapp/status/192335906479415296">Sur Twitter la semaine dernière</a>, via le canal officiel du site, on apprenait que c&rsquo;était la fin des haricots:</p>
 
 <blockquote>

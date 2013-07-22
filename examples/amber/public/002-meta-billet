@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-02-29</time>
 			<article><p>Il existe de nombreux moteurs de blogue gratuits sur internet, tels <a href="http://wordpress.org/">Wordpress</a>, <a href="http://blogger.com/">Blogger</a> et <a href="https://www.tumblr.com/">Tumblr</a>. Pourquoi avoir jeté l&rsquo;ancre sur ce discret et modeste <a href="http://calepin.co/">Calepin</a>? Peut-être un peu pour ça, tiens, pour me tenir loin des tumultes de ces méga-centres urbains du Web. Un peu aussi pour ce <em>design</em> minimaliste, centré sur le contenu, sur les mots. Et un peu pour deux qualités franchement moins romantiques: <em>dropbox</em> et <em>markdown</em>.</p>
 
 <h3>Mes billets, mon coffret</h3>

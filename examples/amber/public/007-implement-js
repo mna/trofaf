@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="/css/main.css" />
 		<link rel="stylesheet" href="/css/fontello.css" />
 		<link href="http://fonts.googleapis.com/css?family=Telex" rel="stylesheet" type="text/css" />
-		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="" />
+		<link rel="alternate" type="application/rss&#43;xml" title="RSS" href="http://localhost/rss" />
 	</head>
 	<body>
 		
 		<div class="header">
 			<div class="title">
-				<a href="/"></a>
+				<a href="/">Site Name</a>
 				<br />
 				<span class="tagline"></span>
 			</div>
@@ -36,6 +36,7 @@
 			</div>
 		</nav>
 		<main>
+			<time>2012-04-02</time>
 			<article><p>L&rsquo;injection de dépendance (<em>dependency injection</em>) avec Javascript a comme conséquence de ne pouvoir assumer que les fonctionnalités offertes par l&rsquo;instance reçue seront celles attendues. Dans les langages statiques, l&rsquo;injection est généralement basée sur une interface, qui assure au module &ldquo;client&rdquo; la disponibilité d&rsquo;un ensemble de fonctionnalités. Le contrat imposé par l&rsquo;interface est assurément respecté. Dans un langage dynamique comme Javascript, il n&rsquo;y a rien de tel.</p>
 
 <p>Ce qui laisse deux options aux développeurs Javascript: l&rsquo;acte de foi ou la validation manuelle de l&rsquo;objet reçu. J&rsquo;en parlais dans <a href="http://hypermegatop.calepin.co/experimentations-sur-linjection-de-dependance-avec-nodejs.html">mon dernier billet</a>, j&rsquo;avais l&rsquo;impression qu&rsquo;il manquait quelque chose à ce niveau.</p>
