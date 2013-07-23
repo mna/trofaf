@@ -24,6 +24,8 @@ There is no special template for an index page, the most recent post (based on t
 
 When the site is (re-)generated, the public directory must be cleaned, because some posts may have been deleted. Subdirectories are left untouched (so that `css/` or `js/` directories can coexist peacefully), as well as hidden (dot) files, and some special files are also graced from the destruction (robots.txt, favicon.ico, etc., see gen.go).
 
+It currently uses my fork of the amber package, in order to make a `fmttime(t time.Time, fmt string) string` function available in the templates. This function makes it possible to format the `PubTime` or `ModTime` fields in the same way that the stdlib's `time.Format()` works. This function is also made available to native Go templates (you can check the examples for usage).
+
 ## Command-line Options
 
 The following options can be set at the command-line: 
