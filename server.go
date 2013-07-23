@@ -24,7 +24,7 @@ func run() {
 				handlers.GZIPHandler(
 					http.FileServer(http.Dir(PublicDir)),
 					nil),
-				handlers.NewLogOptions(nil, handlers.Lshort)),
+				handlers.NewLogOptions(nil, handlers.Ldefault)),
 			nil),
 		faviconPath,
 		faviconCache)
