@@ -10,14 +10,13 @@ import (
 	"github.com/PuerkitoBio/ghost/handlers"
 )
 
-var (
-	// Favicon path and cache duration
-	faviconPath  = filepath.Join(PublicDir, "favicon.ico")
-	faviconCache = 2 * 24 * time.Hour
-)
-
 // Start serving the blog.
 func run() {
+	var (
+		faviconPath  = filepath.Join(PublicDir, "favicon.ico")
+		faviconCache = 2 * 24 * time.Hour
+	)
+
 	h := handlers.FaviconHandler(
 		handlers.PanicHandler(
 			handlers.LogHandler(
