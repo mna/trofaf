@@ -63,12 +63,10 @@ func main() {
 			if err := generateSite(); err != nil {
 				log.Fatal("FATAL ", err)
 			}
-
 			// Terminate if set to generate only
 			if Options.GenOnly {
 				return
 			}
-
 			// Start the watcher
 			defer startWatcher().Close()
 		}

@@ -31,6 +31,7 @@ It currently uses my fork of the amber package, in order to make a `fmttime(t ti
 The following options can be set at the command-line: 
 
 * Port (-p) : the port number for the web server, defaults to 9000.
+* GenOnly (-g) : generate the static site and exit.
 * NoGen (-G) : prevents watching and live-generating the site. This is equivalent to running the static public directory.
 * SiteName (-n) : the name of the web site, passed to the template.
 * TagLine (-t) : a tag line for the web site, passed to the template.
