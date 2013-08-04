@@ -12,6 +12,7 @@ import (
 // This structure holds the command-line options.
 type options struct {
 	Port             int    `short:"p" long:"port" description:"the port to use for the web server" default:"9000"`
+	GenOnly          bool   `short:"g" long:"generate-only" description:"generate the static site and exit"`
 	NoGen            bool   `short:"G" long:"no-generation" description:"when set, the site is not automatically generated"`
 	SiteName         string `short:"n" long:"site-name" description:"the name of the site" default:"Site Name"`
 	TagLine          string `short:"t" long:"tag-line" description:"the site's tag line"`
@@ -62,6 +63,12 @@ func main() {
 			if err := generateSite(); err != nil {
 				log.Fatal("FATAL ", err)
 			}
+
+			// Terminate if set to generate only
+			if Options.GenOnly {
+				return
+			}
+
 			// Start the watcher
 			defer startWatcher().Close()
 		}
