@@ -1,0 +1,24 @@
+
+<html>
+	<head>
+		<title>This is a test 3</title>
+	</head>
+	<body>
+		
+<article>
+	<h1>This is a test 3</h1>
+	<time>2013-08-06</time>
+	<div><h1>This is a test header 3</h1>
+
+<p>And this is a test content 3.</p>
+</div>
+	
+	<a href="test">Next</a>
+	
+	
+	<a href="test4">Prev</a>
+	
+</article>
+
+	</body>
+</html>

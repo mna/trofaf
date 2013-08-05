@@ -21,7 +21,6 @@ var (
 	postTplNm = "post.amber"     // The amber post template file name (native Go are compiled using ParseGlob)
 
 	// Special files in the public directory, that must not be deleted
-	// If value is true, this must match the prefix of the file (HasPrefix())
 	specFiles = map[string]struct{}{
 		"favicon.ico":                              struct{}{},
 		"robots.txt":                               struct{}{},
@@ -91,7 +90,7 @@ func compileTemplates() error {
 
 // Clear the public directory, ignoring special files, subdirectories, and hidden (dot) files.
 func clearPublicDir() error {
-	// Clear the public directory, except subdirs and special files (favicon.ico)
+	// Clear the public directory, except subdirs and special files (favicon.ico & co.)
 	fis, err := ioutil.ReadDir(PublicDir)
 	if err != nil {
 		return fmt.Errorf("error getting public directory files: %s", err)

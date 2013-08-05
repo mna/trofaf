@@ -18,6 +18,14 @@ var (
 	ErrEmptyPost          = fmt.Errorf("empty post file")
 	ErrInvalidFrontMatter = fmt.Errorf("invalid front matter")
 	ErrMissingFrontMatter = fmt.Errorf("missing front matter")
+
+	// Lookup table to find the format based on the length of the date in the front matter
+	pubDtFmt = map[int]string{
+		10: "2006-01-02",
+		14: "2006-01-02 15h",
+		16: "2006-01-02 15:04",
+		25: time.RFC3339,
+	}
 )
 
 // The TemplateData structure contains all the relevant information passed to the
@@ -123,8 +131,8 @@ func newLongPost(fi os.FileInfo) (*LongPost, error) {
 
 	slug := getSlug(fi.Name())
 	pubdt := fi.ModTime()
-	if dt, ok := m["Date"]; ok {
-		pubdt, err = time.Parse("2006-01-02", dt)
+	if dt, ok := m["Date"]; ok && len(dt) > 0 {
+		pubdt, err = time.Parse(pubDtFmt[len(dt)], dt)
 		if err != nil {
 			return nil, err
 		}

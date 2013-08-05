@@ -1,17 +1,23 @@
 
 <html>
 	<head>
-		<title>This is a test</title>
+		<title>This is a test 1</title>
 	</head>
 	<body>
 		
 <article>
-	<h1>This is a test</h1>
-	<time>2013-07-17</time>
-	<div><h1>This is a test header</h1>
+	<h1>This is a test 1</h1>
+	<time>2013-08-06</time>
+	<div><h1>This is a test header 1</h1>
 
-<p>And this is a test content.</p>
+<p>And this is a test content 1.</p>
 </div>
+	
+	<a href="test2">Next</a>
+	
+	
+	<a href="test3">Prev</a>
+	
 </article>
 
 	</body>

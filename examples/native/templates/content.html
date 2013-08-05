@@ -3,5 +3,11 @@
 	<h1>{{ .Post.ShortPost.Title }}</h1>
 	<time>{{ fmttime .Post.ShortPost.PubTime "2006-01-02" }}</time>
 	<div>{{ .Post.Content }}</div>
+	{{ if .Next }}
+	<a href="{{ .Next.Slug }}">Next</a>
+	{{ end }}
+	{{ if .Prev }}
+	<a href="{{ .Prev.Slug }}">Prev</a>
+	{{ end }}
 </article>
 {{ end }}
