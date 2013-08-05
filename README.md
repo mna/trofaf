@@ -56,7 +56,7 @@ Lang: en
 Etc.
 ```
 
-The three dashes delimit the front matter. It must be there, beginning and end. Between the dashes, the part before the colon `:` is the key, and after is the value. Simple as that. Title, Description, Author, Date and Lang are recognized. Date **must** be in the yyyy-MM-dd format.
+The three dashes delimit the front matter. It must be there, beginning and end. Between the dashes, the part before the colon `:` is the key, and after is the value. Simple as that. Title, Description, Author, Date and Lang are recognized. Valid date formats are *2006-01-02*, *2006-01-02 15h*, *2006-01-02 15:04* or the RCF3339 format (*2013-08-06T17:48:01-05:00*).
 
 ## License
 
