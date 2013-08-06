@@ -22,7 +22,9 @@ var (
 	// Lookup table to find the format based on the length of the date in the front matter
 	pubDtFmt = map[int]string{
 		10: "2006-01-02",
+		13: "2006-01-02 15h",
 		14: "2006-01-02 15h",
+		15: "2006-01-02 15:04",
 		16: "2006-01-02 15:04",
 		25: time.RFC3339,
 	}
